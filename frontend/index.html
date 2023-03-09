@@ -3,79 +3,70 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
-  <script type='module' src="utils/teamnames.js"></script>
-  <script type='module' src="utils/token.js"></script>
-  <title>Test</title>
+  <script defer src="./utils/modal.js"></script>
+  <title>ACM March Madness</title>
 </head>
 
+
 <body>
+  <nav class="container-fluid">
+    <ul>
+      <li><a href="./" class="contrast"><strong>ACM March Madness</strong></a></li>
+    </ul>
+    <ul>
+      <li>
+        <details role="list" dir="rtl">
+          <summary aria-haspopup="listbox" role="link">Compete</summary>
+          <ul role="listbox">
+            <li><a href="./pages/code.html" data-theme-switcher="auto">Week of Code</a></li>
+            <!-- to enable, remove `disabled role='button' class='secondary` -->
+            <li><a disabled role='button' class='secondary' href="#" data-theme-switcher="light">Hackathon</a></li>
+            <li><a disabled role='button' class='secondary' href="#" data-theme-switcher="light">Fermi</a></li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <a href="/pages/leaderboard.html">Leaderboard</a>
+      </li>
+
+      <li>
+        <a role='button' class='secondary outline' href="./pages/admin.html">Admin</a>
+      </li>
+    </ul>
+  </nav><!-- ./ Nav -->
   <main class="container">
-    <h1>ACM March Madness</h1>
+    <hgroup>
+      <h1>Welcome to the Madness.</h1>
+      <p>An ACM-sponsored coding event</p>
+    </hgroup>
     <article>
       <hgroup>
-        <h2>Team Creation</h2>
-        <p>Only one person in your team needs to register</p>
+        <h3>Getting Started</h3>
+        <p>Create or join a team!</p>
       </hgroup>
-
-      <form id="team-creation-form" action="#" onsubmit="event.preventDefault();">
-        <input id="team-name-input" type="text" name="team_name" placeholder="team name" />
-        <button id="submit-team">Create</button>
-        <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
-      </form>
+      <button type="button" onclick="window.location.href='./pages/teams.html'">Team Creation Dashboard</button>
+      <section id="modal">
+        <button class="secondary" data-target="modal-example" onclick="toggleModal(event)">Already have a team?</button>
+      </section><!-- ./ Modal -->
     </article>
   </main>
 </body>
 
-<script type='module'>
-  import {getTeamName} from './utils/teamnames.js'
-  import {getToken} from './utils/token.js'
-  let team_name_field = document.getElementById("team-name-input");
-  team_name_field?.setAttribute("placeholder", getTeamName());
+<dialog id="modal-example">
+  <article>
+    <a href="#close" aria-label="Close" class="close" data-target="modal-example" onclick="toggleModal(event)"></a>
+    <hgroup>
+      <h3 class="contrast">Enter your team's <strong>token<strong></h3>
+      <p><small>After one person from your team has received a token, enter it here</small></p>
+    </hgroup>
+    <input type="text" name="token-entry" value="" placeholder="<token>" />
+    <footer>
+      <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Confirm</a>
+    </footer>
+  </article>
+</dialog><!-- ./ Modal example -->
 
-  let team_submit_button = document.getElementById('submit-team');
-  team_submit_button.addEventListener("click", getToken)
-
-  let token_box = document.getElementById('token-box');
-
-  token_box.onclick = () => {
-    let tok = token_box.dataset.content;
-    navigator.clipboard.writeText(tok ?? '');
-    token_box.dataset.content = "copied to clipboard!"
-    setTimeout(() => {
-      token_box.dataset.content = tok;
-    }, 1000)
-  }
-</script>
-
-<style>
-  #token-box {
-    min-width: 20vw;
-    text-align: center;
-    position: relative;
-    font-size: 1.5rem;
-    margin-top: 4vh;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    border: 3px dashed var(--secondary)
-  }
-
-  #token-box::after {
-    filter: opacity(.5);
-    content: attr(data-content);
-    content: "hover to reveal";
-    font-style: italic;
-  }
-
-  #token-box:hover {
-    cursor: pointer;
-  }
-
-  #token-box:hover::after {
-    content: attr(data-content);
-    filter: opacity(1);
-    font-style: normal;
-  }
-</style>
 
 </html>
