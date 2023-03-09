@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script type='module' src="utils/teamnames.js"></script>
+  <script type='module' src="utils/token.js"></script>
+  <title>Test</title>
+</head>
+
+<body>
+  <main class="container">
+    <h1>[logo] March Madness</h1>
+    <article>
+      <hgroup>
+        <h2>Team Creation</h2>
+        <p>Only one person in your team needs to register</p>
+      </hgroup>
+
+      <form id="team-creation-form">
+        <input id="team-name-input" type="text" name="team-name" placeholder="team name" />
+        <button type="submit" onclick="getToken()">Create</button>
+        <code data-content="whatever" id="token-box"></code>
+      </form>
+    </article>
+  </main>
+</body>
+
+<script type='module'>
+  import {getTeamName} from './utils/teamnames.js'
+  import {getToken} from './utils/token.js'
+  let team_name_field = document.getElementById("team-name-input");
+  team_name_field?.setAttribute("placeholder", getTeamName());
+
+  // token box rendering
+  let token_box = document.getElementById('token-box');
+  let token = await getToken();
+  token_box.dataset.content = token;
+
+  token_box.onclick = () => {
+    navigator.clipboard.writeText(token ?? '');
+  }
+
+</script>
+
+<style>
+  #token-box {
+    min-width: 20vw;
+    text-align: center;
+    position: relative;
+    font-size: 1.5rem;
+    margin-top: 4vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    border: 3px dashed #333;
+  }
+
+  #token-box::after {
+    filter: opacity(.5);
+    content: attr(data-content);
+    content: "hover to reveal";
+    font-style: italic;
+  }
+
+  #token-box:hover {
+    cursor: pointer;
+  }
+
+  #token-box:hover::after {
+    content: attr(data-content);
+    filter: opacity(1);
+    font-style: normal;
+  }
+</style>
+
+</html>
