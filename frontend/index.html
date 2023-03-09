@@ -18,10 +18,10 @@
         <p>Only one person in your team needs to register</p>
       </hgroup>
 
-      <form id="team-creation-form">
-        <input id="team-name-input" type="text" name="team-name" placeholder="team name" />
-        <button type="submit" onclick="getToken()">Create</button>
-        <code data-content="whatever" id="token-box"></code>
+      <form id="team-creation-form" action="#" onsubmit="event.preventDefault();">
+        <input id="team-name-input" type="text" name="team_name" placeholder="team name" />
+        <button id="submit-team">Create</button>
+        <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
       </form>
     </article>
   </main>
@@ -33,14 +33,23 @@
   let team_name_field = document.getElementById("team-name-input");
   team_name_field?.setAttribute("placeholder", getTeamName());
 
+  let team_submit_button = document.getElementById('submit-team');
+  team_submit_button.addEventListener("click", getToken)
+
   // token box rendering
   let token_box = document.getElementById('token-box');
-  let token = await getToken();
-  token_box.dataset.content = token;
 
   token_box.onclick = () => {
-    navigator.clipboard.writeText(token ?? '');
+    let tok = token_box.dataset.content;
+    navigator.clipboard.writeText(tok ?? '');
+    token_box.dataset.content = "copied to clipboard!"
+    setTimeout(() => {
+      token_box.dataset.content = tok;
+    }, 1000)
   }
+
+  let submit_form = document.getElementById('team-creation-form');
+
 
 </script>
 
@@ -53,7 +62,7 @@
     margin-top: 4vh;
     margin-left: 50%;
     transform: translateX(-50%);
-    border: 3px dashed #333;
+    border: 3px dashed var(--secondary)
   }
 
   #token-box::after {
