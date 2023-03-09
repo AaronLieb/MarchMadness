@@ -11,7 +11,7 @@
 
 <body>
   <main class="container">
-    <h1>[logo] March Madness</h1>
+    <h1>ACM March Madness</h1>
     <article>
       <hgroup>
         <h2>Team Creation</h2>
@@ -36,7 +36,6 @@
   let team_submit_button = document.getElementById('submit-team');
   team_submit_button.addEventListener("click", getToken)
 
-  // token box rendering
   let token_box = document.getElementById('token-box');
 
   token_box.onclick = () => {
@@ -47,10 +46,6 @@
       token_box.dataset.content = tok;
     }, 1000)
   }
-
-  let submit_form = document.getElementById('team-creation-form');
-
-
 </script>
 
 <style>

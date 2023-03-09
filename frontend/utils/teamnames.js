@@ -1,5 +1,5 @@
-let former = ["The", "Blazing", "Sick"]
-let latter = ["Bulldogs", "Flamingos"]
+let former = ["The", "Blazing", "Sick", "Flaming", "Stupendous", "Courageous", "Scared", "Bendy"]
+let latter = ["Bulldogs", "Flamingos", "Zebras", "Giraffes", "Pomeranians", "Yo-Yo's"]
 
 export const getTeamName = () => {
   let r1 = Math.floor(Math.random() * former.length)

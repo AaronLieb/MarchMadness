@@ -1,4 +1,5 @@
 export const getToken = async () => {
+  // TODO: validate team name input
   let team_name = document.getElementById('team-name-input').value;
   let token_box = document.getElementById('token-box');
   let submit_button = document.getElementById('submit-team');
