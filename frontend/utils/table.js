@@ -11,7 +11,7 @@ let loading_interval = setInterval(() => {
 
 
 const jsonTableToDOM = (data) => {
-  let container = $("#table-container");
+  let container = $("#table-container").hide();
   let table = $("<table>");
   let thead = $("<thead>");
 
@@ -30,6 +30,9 @@ const jsonTableToDOM = (data) => {
     tr.append(th);
   });
 
+  let tht = $("<th>").text("Total");
+  tr.append(tht);
+
   thead.append(tr);
   table.append(tr);
 
@@ -40,24 +43,27 @@ const jsonTableToDOM = (data) => {
     let td = $("<td>");
     td.text(names[idx]);;
     tr.append(td);
+    let total = 0;
     for (let i = 0; i < data.length; ++i) {
       let td = $("<td>");
-      td.text(data[i][names[idx]]);
+      score = data[i][names[idx]];
+      td.text(score);
+      total += parseInt(score);
       tr.append(td);
     }
+    let td2 = $("<td id='total'>").text(total);
+    tr.append(td2);
 
     table.append(tr);
   })
 
   container.append(table);
-  // h1.delay(1000).fadeIn(1000);
+  container.delay(300).fadeIn(1000);
 }
 
 fetch("https://api.jstitt.dev/acmmm/sheet/scoreboard").then(response => response.json()).then((data) => {
   console.log(data)
-  // TODO: convert to table?!?!?!
-  //
   jsonTableToDOM(data)
-  $("#scoreboard-loading-bar").fadeOut(1200);
-  $("#scoreboard-loading-text").fadeOut(1200)
+  $("#scoreboard-loading-bar").fadeOut(600);
+  $("#scoreboard-loading-text").fadeOut(600)
 });
