@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
   <script type='module' src="../utils/teamnames.js"></script>
   <script type='module' src="../utils/token.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous">
     </script>
@@ -17,6 +18,8 @@
       $("#footer").load("/footer.html");
     });
   </script>
+
+  <script src="../utils/jquery.countdown.min.js"></script>
 
   <title>Week of Code</title>
 </head>
@@ -30,11 +33,11 @@
         <p>A new coding problem every day</p>
       </hgroup>
       <ul>
-        <li><a href="./problems/problem1.html">Problem 1</a></li>
-        <li><a href="./problems/problem2.html">Problem 2</a></li>
-        <li><a href="./problems/problem3.html">Problem 3</a></li>
-        <li><a href="./problems/problem4.html">Problem 4</a></li>
-        <li><a href="./problems/problem5.html">Problem 5</a></li>
+        <li><a href="./problems/problem1.html">Problem 1</a><span id="sun"> -- test</span></li>
+        <li><a href="./problems/problem2.html">Problem 2</a><span id="mon"> -- test</span></li>
+        <li><a href="./problems/problem3.html">Problem 3</a><span id="tue"> -- test</span></li>
+        <li><a href="./problems/problem4.html">Problem 4</a><span id="wed"> -- test</span></li>
+        <li><a href="./problems/problem5.html">Problem 5</a><span id="thu"> -- test</span></li>
       </ul>
     </article>
   </main>
@@ -42,15 +45,32 @@
 </body>
 
 <script>
-  var newYear = new Date();
-  newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
-  $('#defaultCountdown').countdown({until: newYear});
-
-  $('#removeCountdown').click(function () {
-    var destroy = $(this).text() === 'Remove';
-    $(this).text(destroy ? 'Re-attach' : 'Remove');
-    $('#defaultCountdown').countdown(destroy ? 'destroy' : {until: newYear});
+  let ids = ["sun", "mon", "tue", "wed", "thu"];
+  $.each(ids, (idx, id) => {
+    $("#" + id).countdown('2023/03/' + (12 + idx).toString(), (event) => {
+      // $("#" + id).countdown('2023/03/11 12:41:30', (event) => { // testing
+      $("#" + id).html(event.strftime(' -- %I:%M:%S'));
+      if (event.type == "finish") {
+        $("#" + id).siblings("a").wrap("<span>")
+      }
+    });
   });
+
 </script>
+
+<style>
+  li>span {
+    color: var(--secondary);
+  }
+
+  li>a {
+    color: var(--secondary);
+    cursor: not-allowed;
+    text-decoration: none;
+    pointer-events: none;
+  }
+
+  span>a {}
+</style>
 
 </html>
