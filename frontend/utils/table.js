@@ -2,13 +2,6 @@
 let scoreboard_loading_text = document.getElementById("scoreboard-loading-text")
 let scoreboard_loading_bar = document.getElementById("scoreboard-loading-bar")
 
-let loading_interval = setInterval(() => {
-  scoreboard_loading_bar.value += 1
-  if (scoreboard_loading_bar.value >= 100) {
-    clearInterval(loading_interval);
-  }
-}, 10)
-
 
 const jsonTableToDOM = (data) => {
   let container = $("#table-container").hide();
@@ -58,12 +51,11 @@ const jsonTableToDOM = (data) => {
   })
 
   container.append(table);
-  container.delay(300).fadeIn(1000);
+  container.fadeIn(750).animate({ top: "-=10vh" }, 750);
 }
 
 fetch("https://api.jstitt.dev/acmmm/sheet/scoreboard").then(response => response.json()).then((data) => {
-  console.log(data)
-  jsonTableToDOM(data)
-  $("#scoreboard-loading-bar").fadeOut(600);
-  $("#scoreboard-loading-text").fadeOut(600)
+  jsonTableToDOM(data);
+  $("#progress-2").animate({ opacity: 0 }, 500).addClass("loaded")
+  $("#scoreboard-loading-text").animate({ opacity: 0 }, 100);
 });
