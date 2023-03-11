@@ -1,6 +1,13 @@
 export const getToken = async () => {
   // TODO: validate team name input
+  //
   let team_name_input = document.getElementById('team-name-input');
+  // check validity of input field against pattern [a-zA-Z\W]*
+  if (!team_name_input.validity.valid) {
+    console.log('Invalid Team Name: ');
+    return;
+  }
+
   let token_box = document.getElementById('token-box');
   let submit_button = document.getElementById('submit-team');
 
@@ -33,5 +40,6 @@ export const getToken = async () => {
       token_box.style.visibility = 'visible';
       token_box.dataset.content = json.token
       submit_button.setAttribute("aria-busy", "false");
+      submit_button.disabled = true;
     });
 }

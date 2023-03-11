@@ -31,8 +31,10 @@
       </hgroup>
 
       <form id="team-creation-form" action="#" onsubmit="event.preventDefault();">
-        <input id="team-name-input" type="text" name="team_name" placeholder="team name" />
-        <button id="submit-team">Create</button>
+        <input id="team-name-input" type="text" name="team_name" placeholder="team name" pattern="[a-zA-Z\W]*"
+          title="Team name must be letters and spaces only!" />
+        <!-- <input type="submit" id='submit-team'> -->
+        <button type='submit' id="submit-team">Create</button>
         <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
       </form>
     </article>
@@ -88,6 +90,16 @@
     content: attr(data-content);
     filter: opacity(1);
     font-style: normal;
+  }
+
+  input:invalid {
+    border-color: red;
+  }
+
+  input:invalid+#submit-team {
+    background-color: var(--secondary);
+    cursor: not-allowed;
+    border: 1px dotted red;
   }
 </style>
 
