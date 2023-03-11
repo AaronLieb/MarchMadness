@@ -40,14 +40,13 @@ const jsonTableToDOM = (data) => {
     let td = $("<td>");
     td.text(names[idx]);;
     tr.append(td);
-    for (let i = 0; i < names.length; ++i) {
+    for (let i = 0; i < data.length; ++i) {
       let td = $("<td>");
-      td.text(scores[i]);
-      tr.append(td)
+      td.text(data[i][names[idx]]);
+      tr.append(td);
     }
 
     table.append(tr);
-
   })
 
   container.append(table);
