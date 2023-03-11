@@ -19,34 +19,36 @@ const jsonTableToDOM = (data) => {
 
   let headers = Object.keys(data[0]);
   let tr = $("<tr>");
+  let th = $("<th>")
+  tr.append(th);
 
-  let events = [];
-
-  $.each(headers, (idx, item) => {
-    if (idx == 0) {
-      item = "";
-    }
+  $.each(data, (idx, obj) => {
+    let event_name = obj['-']
     let th = $("<th>");
-    console.log(idx, item)
-    th.text(item);
+    th.text(event_name);
     console.log(th);
     tr.append(th);
-  })
+  });
+
   thead.append(tr);
   table.append(tr);
 
-  data.forEach((item) => {
+  $.each(data, (idx, row) => {
+    let names = Object.keys(row).slice(1,);
+    let scores = Object.values(row).slice(1,);
     let tr = $("<tr>");
-    let event = item['-'];
-    let scores = Object.values(item);
-    scores.forEach((s) => {
+    let td = $("<td>");
+    td.text(names[idx]);;
+    tr.append(td);
+    for (let i = 0; i < names.length; ++i) {
       let td = $("<td>");
-      td.text(s);
-      tr.append(td);
+      td.text(scores[i]);
+      tr.append(td)
+    }
 
-    });
     table.append(tr);
-  });
+
+  })
 
   container.append(table);
   // h1.delay(1000).fadeIn(1000);
