@@ -8,6 +8,7 @@
   <script type='module' src="../utils/token.js"></script>
   <script src='/utils/cookie.js'></script>
   <script defer src="../utils/table.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.18.2.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous">
     </script>
@@ -26,7 +27,10 @@
 <body>
   <div id="header"></div>
   <main class="container" id="main-container" style="margin-top: -10vh;">
-    <h1>Leaderboard</h1>
+    <span style="display: flex; align-items: center;">
+      <h1 id="to-leaderboard">Leaderboard</h1>
+      <h1 id="to-plot">〉 Plot</h1>
+    </span>
     <h4 class="out" id="scoreboard-loading-text" aria-busy="true">Loading Table</h4>
     <progress class="out" id="progress-2"></progress>
     <div id="table-container">
@@ -34,11 +38,87 @@
 
       </table>
     </div>
+    <div id="plot-container"></div>
   </main>
-  <div id="footer"></div>
+  <div id=" footer">
+  </div>
+
 </body>
 
+<script>
+  // fetch data from endpoint
+
+  let xs, ys, teams;
+  const COMP_START = '2023-03-12 12:30:00' // TODO: change this to actual comp start
+  const fetchGraphData = async () => {
+    fetch('https://api.jstitt.dev/acmmm/sheet/get_graph', {method: 'GET'}).then(resp => resp.json()).then(data => {
+      xs = data['xs'];
+      ys = data['ys']
+      teams = [...new Set(data['teams'])]
+      // console.log(data)
+      // console.log(xs, ys, teams)
+    }).then(() => {
+      var data = []
+      teams.forEach((team) => {
+        xs[team].unshift(COMP_START); // start each plot at comp start
+        ys[team].unshift(0); // each time starts with 0 points
+        let trace = {
+          x: xs[team],
+          y: ys[team], // 
+          name: team,
+        }
+        data.push(trace);
+      });
+      var layout = {
+        title: "Score over time",
+        margin: {t: 0},
+        dragmode: 'pan',
+      }
+      container = document.getElementById('plot-container');
+      Plotly.newPlot(container, data, layout);
+    })
+
+    // start off by hiding plot
+    let plot_container = $("#plot-container").hide();
+    let table_container = $("#table-container");
+    let to_plot = $("#to-plot").click(() => {showPlot()});
+    let to_leaderboard = $("#to-leaderboard").click(() => {showLeaderboard()});
+    const showPlot = () => {
+      plot_container.fadeIn(400);
+      table_container.fadeOut(400);
+      to_plot.css({"font-size": "2rem", "cursor": "default"})
+      to_leaderboard.css({"cursor": "pointer", "font-size": "1.2rem"})
+    }
+
+    const showLeaderboard = () => {
+      table_container.fadeIn(400);
+      plot_container.fadeOut(400);
+      to_leaderboard.css({"font-size": "2rem"})
+      to_plot.css({"cursor": "pointer", "font-size": "1.2rem"})
+    }
+  }
+
+  fetchGraphData();
+</script>
+
+
 <style>
+  #to-plot {
+    font-size: 1.2rem;
+    transition: all .2s ease-in;
+    cursor: pointer;
+    margin-left: 1vw;
+  }
+
+  #to-leaderboard {
+    transition: all .2s ease-in;
+  }
+
+  #plot-container {
+    height: 40vh;
+    width: 60vw;
+  }
+
   #footer {
     position: absolute;
     bottom: .3%;
