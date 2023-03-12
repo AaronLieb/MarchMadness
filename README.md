@@ -1,3 +1,3 @@
 # ACM March Madness
 
-![flyer](https://github.com/AaronLieb/MarchMadness/blob/main/carbon.png?raw=true)
+![flyer](https://github.com/AaronLieb/MarchMadness/blob/main/marketing/carbon.png?raw=true)
