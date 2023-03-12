@@ -29,7 +29,7 @@ export const getToken = async () => {
   submit_button.setAttribute("aria-busy", "true");
 
   fetch(`https://api.jstitt.dev/acmmm/sheet/create_team?team_name=${team_name}`, {
-    method: "POST",
+    method: "GET",
   }).then(res => {
     if (!res.ok) {
       submit_button.setAttribute("class", "secondary outline")
