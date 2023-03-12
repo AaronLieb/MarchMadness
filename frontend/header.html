@@ -16,13 +16,13 @@
     </ul>
     <ul>
       <li>
-        <details role="list" dir="rtl">
+        <details role="list">
           <summary aria-haspopup="listbox" role="link">Compete</summary>
           <ul role="listbox">
             <li><a href="/pages/code.html">Week of Code</a></li>
-            <li><a disabled href="#">Mini Hackathon</a></li>
-            <li><a disabled href="#">Capture the Flag</a></li>
-            <li><a disabled href="#">Guesstimation Contest</a></li>
+            <li><a class="off" href="#">Mini Hackathon</a></li>
+            <li><a class="off" href="#">Capture the Flag</a></li>
+            <li><a class="off" href="#">Guesstimation Contest</a></li>
           </ul>
         </details>
       </li>
@@ -61,6 +61,12 @@
     background-color: var(--primary);
     border-radius: 20px;
     border: 3px solid var(--inverse);
+  }
+
+  .off {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 </style>
 
