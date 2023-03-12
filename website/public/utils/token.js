@@ -1,6 +1,4 @@
 export const getToken = async () => {
-  // TODO: validate team name input
-  //
   let team_name_input = document.getElementById('team-name-input');
   // check validity of input field against pattern [a-zA-Z\W]*
   if (!team_name_input.validity.valid) {
