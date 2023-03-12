@@ -1,3 +1,6 @@
-# Day 1
+# Day 1 - Parsing People
 
-Parsing
+for both parts: 
+  What was the maximum number of people in the room?
+
+
