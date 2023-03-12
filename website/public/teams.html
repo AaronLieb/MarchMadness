@@ -31,8 +31,9 @@
       </hgroup>
 
       <form id="team-creation-form" action="#" onsubmit="event.preventDefault();">
-        <input id="team-name-input" type="text" name="team_name" placeholder="team name" pattern="[a-zA-Z\W]*"
-          title="Team name must be letters and spaces only!" autocomplete="off" />
+        <input maxlength="32" id="team-name-input" type="text" name="team_name" placeholder="team name"
+          pattern="[a-zA-Z ]{2,32}" title="Team name must be of length [2, 32] consisting of letters and spaces only!"
+          autocomplete="off" />
         <!-- <input type="submit" id='submit-team'> -->
         <button type='submit' id="submit-team">Create</button>
         <hgroup>

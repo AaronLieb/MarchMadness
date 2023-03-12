@@ -67,7 +67,7 @@ const jsonTableToDOM = (raw) => {
     if (getCookie('team') && name[0].textContent == getCookie('team')) {
       name.css({ 'background-color': 'var(--primary)', 'color': 'var(--primary-inverse)' });
       setTimeout(() => {
-        name[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        name[0].scrollIntoView({ behavior: 'smooth', block: 'end' });
       }, 750)
     }
 

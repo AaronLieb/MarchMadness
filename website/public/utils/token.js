@@ -25,20 +25,29 @@ export const getToken = async () => {
   })
 
   submit_button.setAttribute("aria-busy", "true");
+  let count = 0;
+  console.log(team_name)
+  for (let i = 0; i < team_name.length; ++i) {
+    let chr = team_name[i];
+    if (chr >= 'a' && chr <= 'z' || chr >= 'A' && chr <= 'Z')
+      count += 1
+  }
 
   fetch(`https://api.jstitt.dev/acmmm/sheet/create_team?team_name=${team_name}`, {
     method: "GET",
   }).then(res => {
-    if (!res.ok) {
+    if (!res.ok || count <= 1) {
       submit_button.setAttribute("class", "secondary outline")
       already_created = true;
-      submit_button.innerText = "Team Already Created.";
+      submit_button.innerText = "Invalid Team Name or Team Already Created.";
       submit_button.disabled = true;
       submit_button.setAttribute("aria-busy", "false");
+    } else {
+      return res.json()
     }
-    return res.json()
   })
     .then(json => {
+      if (json === undefined) return;
       token_box.style.visibility = 'visible';
       token_hint.style.visibility = 'visible';
       token_box.dataset.content = json.token

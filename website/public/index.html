@@ -99,11 +99,21 @@
     }
   }
 
+  $("#token-entry").on("input", () => {
+    $("#token-entry").attr('aria-invalid', '');
+    $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm");
+  })
 
   const submitToken = (e) => {
     let token = $("#token-entry")[0].value;
     $("token-submit-button").attr('aria-busy', 'true');
     fetch(`https://api.jstitt.dev/acmmm/sheet/token_lookup?token=${token}`, {method: "GET"}).then(resp => resp.json()).then(data => {
+      if (data.team === undefined) {
+        $("#token-entry").attr("aria-invalid", true);
+        $("#token-submit-button").addClass("secondary").addClass("outline").text("Token not found.")
+        console.log('bad team');
+        return;
+      }
       document.cookie = `team=${data.team}`;
       $("#token-submit-button").html(`You joined <u>${data.team}</u>`).addClass("primary outline").css({"pointer-events": "none", "cursor": "not-allowed"})
       $("token-submit-button").attr('aria-busy', 'false');
