@@ -64,6 +64,10 @@ const jsonTableToDOM = (raw) => {
       tr.append(score);
     });
 
+    if (getCookie('team') && name[0].textContent == getCookie('team')) {
+      name.css({ 'background-color': 'var(--primary)', 'color': 'var(--primary-inverse)' });
+    }
+
     table.append(tr);
   });
 
