@@ -11,5 +11,5 @@ mkdir "./outputs"
 echo "Running solution... [0.in, 99.in]"
 for i in {1..99}
 do
-  python solve.py < "../inputs/$i.in" > "./outputs/$i.out"
+  python solve.py < "../inputs/$i.in" >> "solve.out"
 done
