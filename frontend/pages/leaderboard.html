@@ -28,7 +28,11 @@
     <h1>Leaderboard</h1>
     <h4 class="out" id="scoreboard-loading-text" aria-busy="true">Loading Table</h4>
     <progress class="out" id="progress-2"></progress>
-    <div id="table-container"></div>
+    <div id="table-container">
+      <table id='leaderboard' role='grid'>
+
+      </table>
+    </div>
   </main>
   <div id="footer"></div>
 </body>
@@ -40,8 +44,11 @@
     left: 19%;
   }
 
+
   #table-container {
     position: absolute;
+    max-height: 65vh;
+
   }
 
   .container {
@@ -50,6 +57,7 @@
 
   td {
     text-align: center;
+    font-weight: 550;
   }
 
   th {
@@ -69,6 +77,11 @@
 
   tr>td:nth-child(1) {
     font-weight: 700;
+  }
+
+  tr:nth-child(even) {
+    color: var(--primary-inverse);
+    filter: opacity(0.8);
   }
 
   #total {

@@ -3,57 +3,80 @@ let scoreboard_loading_text = document.getElementById("scoreboard-loading-text")
 let scoreboard_loading_bar = document.getElementById("scoreboard-loading-bar")
 
 
-const jsonTableToDOM = (data) => {
-  let container = $("#table-container").hide();
-  let table = $("<table>");
-  let thead = $("<thead>");
+const jsonTableToMatrix = (raw) => {
+  let matrix = {};
 
-  data = JSON.parse(data)
-
-  let headers = Object.keys(data[0]);
-  let tr = $("<tr>");
-  let th = $("<th>")
-  tr.append(th);
-
-  $.each(data, (idx, obj) => {
-    let event_name = obj['-']
-    let th = $("<th>");
-    th.text(event_name);
-    tr.append(th);
+  $.each(raw, (idx, obj) => {
+    let keys = Object.keys(obj);
+    keys.forEach((k) => {
+      if (matrix[k] === undefined)
+        matrix[k] = [obj[k]];
+      else
+        matrix[k].push(obj[k]);
+    })
   });
 
-  let tht = $("<th>").text("Total");
-  tr.append(tht);
+  $.each(matrix, (key, team) => {
+    if (key == '-') return;
+    let sum = team.reduce((a, b) => a + b, 0);
+    team.push(sum);
+  });
 
-  thead.append(tr);
-  table.append(tr);
+  matrix['-'].push("Total")
 
-  $.each(data, (idx, row) => {
-    let names = Object.keys(row).slice(1,);
-    let tr = $("<tr>");
-    let td = $("<td>");
-    td.text(names[idx]);;
-    tr.append(td);
-    let total = 0;
-    for (let i = 0; i < data.length; ++i) {
-      let td = $("<td>");
-      score = data[i][names[idx]];
-      if (score === undefined) return;
-      td.text(score);
-      total += parseInt(score);
-      tr.append(td);
-    }
-    let td2 = $("<td id='total'>").text(total);
-    tr.append(td2);
+  return matrix;
+}
+
+
+const jsonTableToDOM = (raw) => {
+  let container = $("#table-container").hide()
+  let table = $("#leaderboard");
+  let thead = $("<thead>");
+
+  data = jsonTableToMatrix(JSON.parse(raw));
+
+  let tr = $("<tr>");
+  let th = $("<th>")
+  tr.append(th); // append empty cell
+
+  $.each(data['-'], (_, event_name) => {
+    let th = $("<th>"); // create header cell
+    th.text(event_name); // change header text
+    tr.append(th); // add to row
+  });
+
+  thead.append(tr); // add row to header
+  table.append(tr); // add row to table
+
+  let teams = Object.keys(data).slice(1,);
+  teams.sort(function(a, b) {
+    return data[b].slice(-1) - data[a].slice(-1);
+  });
+
+  $.each(teams, (_, team) => {
+    // row to hold team
+    // first append name
+    let name = $("<td>").text(team);
+    let tr = $("<tr>").append(name);
+    // add all scores from row
+    $.each(data[team], (_, score) => {
+      score = $("<td>").text(score);
+      tr.append(score);
+    });
 
     table.append(tr);
-  })
+  });
 
   container.append(table);
   container.fadeIn(750).animate({ top: "-=10vh" }, 750);
+  if (teams.length > 9) {
+    container.css({ "overflow-y": "scroll" })
+  }
 }
 
 fetch("https://api.jstitt.dev/acmmm/sheet/scoreboard").then(response => response.json()).then((data) => {
+  // data = JSON.parse(data);
+  // console.log(jsonTableToMatrix(data));
   jsonTableToDOM(data);
   $("#progress-2").animate({ opacity: 0 }, 500).addClass("loaded")
   $("#scoreboard-loading-text").animate({ opacity: 0 }, 100);
