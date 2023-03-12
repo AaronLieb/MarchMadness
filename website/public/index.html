@@ -34,7 +34,8 @@
         <h3>Getting Started</h3>
         <p>Create or join a team!</p>
       </hgroup>
-      <button type="button" onclick="window.location.href='/teams'">Team Creation Dashboard</button>
+      <button type="button" id="getting-started-primary" onclick="window.location.href='/teams'">Team Creation
+        Dashboard</button>
       <section id="modal">
         <button class="secondary" data-target="modal-no-team" onclick="openModalHook(event)">Already have a
           team?</button>
@@ -143,6 +144,10 @@
       }
 
     });
+  }
+
+  if (getCookie('team')) {
+    $("#getting-started-primary").html("Compete").click(() => {window.location.href = "/compete"});
   }
 </script>
 
