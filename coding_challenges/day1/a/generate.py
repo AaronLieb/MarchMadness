@@ -1,8 +1,8 @@
 import names
 import random
 
-MIN_PEOPLE = 10000
-MAX_PEOPLE = 20000
+MIN_PEOPLE = 7
+MAX_PEOPLE = 7
 
 people = set()
 
