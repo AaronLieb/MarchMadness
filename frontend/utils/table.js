@@ -67,8 +67,16 @@ const jsonTableToDOM = (raw) => {
     table.append(tr);
   });
 
-  container.append(table);
-  container.fadeIn(750).animate({ top: "-=10vh" }, 750);
+  if (teams.length == 0) { // no teams registered
+    console.log('here')
+    let no_team_text = $("<h4>").text("No teams have registered. Check back later.").hide().delay(300).fadeIn(300);
+    $("#main-container").append(no_team_text);
+
+  }
+  else {
+    container.append(table);
+    container.fadeIn(750).animate({ top: "-=10vh" }, 750);
+  }
   if (teams.length > 9) {
     container.css({ "overflow-y": "scroll" })
   }
