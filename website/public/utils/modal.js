@@ -14,20 +14,24 @@ let visibleModal = null;
 
 
 // Toggle modal
-const toggleModal = event => {
+const toggleModal = (event, id) => {
   event.preventDefault();
-  const modal = document.getElementById(event.currentTarget.getAttribute('data-target'));
+  // const modal = document.getElementById(event.currentTarget.getAttribute('data-target'));
+  console.log('id: ', id);
+  const modal = document.getElementById(id);
   (typeof (modal) != 'undefined' && modal != null)
-    && isModalOpen(modal) ? closeModal(modal) : openModal(modal)
+    && isModalOpen(id) ? closeModal(id) : openModal(id)
 }
 
 // Is modal open
-const isModalOpen = modal => {
+const isModalOpen = id => {
+  const modal = document.getElementById(id);
   return modal.hasAttribute('open') && modal.getAttribute('open') != 'false' ? true : false;
 }
 
 // Open modal
-const openModal = modal => {
+const openModal = id => {
+  const modal = document.getElementById(id);
   if (isScrollbarVisible()) {
     document.documentElement.style.setProperty('--scrollbar-width', `${getScrollbarWidth()}px`);
   }
@@ -40,7 +44,8 @@ const openModal = modal => {
 }
 
 // Close modal
-const closeModal = modal => {
+const closeModal = id => {
+  const modal = document.getElementById(id);
   visibleModal = null;
   document.documentElement.classList.add(closingClass);
   setTimeout(() => {
@@ -55,7 +60,11 @@ document.addEventListener('click', event => {
   if (visibleModal != null) {
     const modalContent = visibleModal.querySelector('article');
     const isClickInside = modalContent.contains(event.target);
-    !isClickInside && closeModal(visibleModal);
+    if (isModalOpen('modal-yes-team')) {
+      !isClickInside && closeModal('modal-yes-team');
+    } else if (isModalOpen('modal-no-team')) {
+      !isClickInside && closeModal('modal-no-team');
+    }
   }
 });
 

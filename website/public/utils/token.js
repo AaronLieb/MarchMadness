@@ -47,5 +47,6 @@ export const getToken = async () => {
       submit_button.setAttribute("aria-busy", "false");
       submit_button.innerHTML = "<i>Team Created.</i>"
       submit_button.disabled = true;
+      document.cookie = `team=${json.team_name};`;
     });
 }

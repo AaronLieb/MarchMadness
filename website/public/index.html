@@ -10,6 +10,7 @@
     crossorigin="anonymous">
     </script>
   <title>ACM March Madness</title>
+  <script src='/utils/cookie.js'></script>
   <!-- Get same header and footer on all pages -->
   <script>
     $(function () {
@@ -33,26 +34,114 @@
       </hgroup>
       <button type="button" onclick="window.location.href='/teams'">Team Creation Dashboard</button>
       <section id="modal">
-        <button class="secondary" data-target="modal-example" onclick="toggleModal(event)">Already have a team?</button>
+        <button class="secondary" data-target="modal-no-team" onclick="openModalHook(event)">Already have a
+          team?</button>
       </section><!-- ./ Modal -->
     </article>
   </main>
   <div id="footer"></div>
 </body>
 
-<dialog id="modal-example">
+<dialog id="modal-no-team">
   <article>
-    <a href="#close" aria-label="Close" class="close" data-target="modal-example" onclick="toggleModal(event)"></a>
+    <a href="#close" aria-label="Close" class="close" data-target="modal-no-team" onclick="openModalHook(event)"></a>
     <hgroup>
       <h3 class="contrast">Enter your team's <strong>token<strong></h3>
       <p><small>After one person from your team has received a token, enter it here</small></p>
     </hgroup>
-    <input type="text" name="token-entry" value="" placeholder="<token>" />
-    <footer>
-      <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Confirm</a>
+    <input type="text" name="token-entry" value="" placeholder="<token>" id="token-entry" />
+    <footer class="grid" id="token-buttons">
+      <a id="token-submit-button" href="#confirm" role="button" data-target="modal-no-team"
+        onclick="submitToken(event)">Confirm</a>
     </footer>
   </article>
-</dialog><!-- ./ Modal example -->
+</dialog>
 
+<dialog id="modal-yes-team">
+  <article id="yes-team-article">
+    <a href="#close" aria-label="Close" class="close" data-target="modal-yes-team" onclick="openModalHook(event)"></a>
+    <hgroup>
+      <h3 id="on-team-header" class="contrast">You are on team <strong id="team-inform">token<strong></h3>
+      <p><small>Start competing!</small></p>
+    </hgroup>
+    <footer id="yes-team-grid" class="grid">
+      <a href="/compete" role=button>Compete</a>
+      <a href="#" id="different-team-button" class="secondary outline warning" onclick="differentTeam()"
+        role=button>Join
+        Different Team</a>
+    </footer>
+    <footer>
+      <input type="" name="" value="" placeholder='Enter "leave my team" to leave' id="confirm-leave-team-input">
+    </footer>
+  </article>
+</dialog>
+
+<script>
+  let interval;
+  let old_team_header_html;
+  const openModalHook = (e) => {
+    // if user is already on a team, display different layout
+    interval && clearInterval(interval);
+    old_team_header_html && $("#on-team-header").html(old_team_header_html);
+    let team_cookie = getCookie("team")
+    if (team_cookie) {
+      if (isModalOpen('modal-no-team')) {
+        closeModal('modal-no-team');
+      }
+      $("#team-inform").html("<mark>" + team_cookie + "</mark>")
+      toggleModal(e, 'modal-yes-team');
+      $("#confirm-leave-team-input").hide();
+    } else {
+      toggleModal(e, "modal-no-team");
+    }
+  }
+
+
+  const submitToken = (e) => {
+    let token = $("#token-entry")[0].value;
+    $("token-submit-button").attr('aria-busy', 'true');
+    fetch(`https://api.jstitt.dev/acmmm/sheet/token_lookup?token=${token}`, {method: "GET"}).then(resp => resp.json()).then(data => {
+      document.cookie = `team=${data.team}`;
+      $("#token-submit-button").html(`You joined <u>${data.team}</u>`).addClass("primary outline").css({"pointer-events": "none", "cursor": "not-allowed"})
+      $("token-submit-button").attr('aria-busy', 'false');
+      let go_compete_button = $("<button>").text("Go Compete!").click(() => {
+        window.location.href = "/compete";
+      });
+      $("#token-buttons").append(go_compete_button);
+    });
+  }
+
+  const differentTeam = () => {
+    console.log('diff team');
+    let yes_team_grid = $("#different-team-button");
+    let on_team_header = $("#on-team-header");
+    old_team_header_html = on_team_header.html();
+    let time = 5;
+    $("#confirm-leave-team-input").val("").attr('aria-invalid', '');
+    let different_team_input = $("#confirm-leave-team-input").fadeIn(300).css({"margin-top": "1.5vh"}).on('input', (e) => {
+      let curr_text = e.target.value;
+      if (curr_text == "") {
+
+      }
+      else if (curr_text != "leave my team") {
+        $("#confirm-leave-team-input").attr('aria-invalid', 'true');
+        clearInterval(interval);
+        time = 5;
+      } else if (curr_text == "leave my team") {
+        $("#confirm-leave-team-input").attr('aria-invalid', 'false');
+        on_team_header.fadeOut(100).fadeIn(300).html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
+        interval = setInterval(() => {
+          if (time <= 0) {
+            deleteCookie('team');
+            window.location.reload();
+          }
+          on_team_header.html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
+          time -= 1;
+        }, 1000)
+      }
+
+    });
+  }
+</script>
 
 </html>
