@@ -31,7 +31,6 @@ const jsonTableToDOM = (data) => {
 
   $.each(data, (idx, row) => {
     let names = Object.keys(row).slice(1,);
-    let scores = Object.values(row).slice(1,);
     let tr = $("<tr>");
     let td = $("<td>");
     td.text(names[idx]);;
@@ -40,6 +39,7 @@ const jsonTableToDOM = (data) => {
     for (let i = 0; i < data.length; ++i) {
       let td = $("<td>");
       score = data[i][names[idx]];
+      if (score === undefined) return;
       td.text(score);
       total += parseInt(score);
       tr.append(td);

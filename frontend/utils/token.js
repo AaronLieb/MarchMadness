@@ -40,6 +40,7 @@ export const getToken = async () => {
       token_box.style.visibility = 'visible';
       token_box.dataset.content = json.token
       submit_button.setAttribute("aria-busy", "false");
+      submit_button.innerHTML = "<i>Team Created.</i>"
       submit_button.disabled = true;
     });
 }
