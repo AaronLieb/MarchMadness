@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
-  <script src='/utils/theme-switcher.js'>
-  </script>
+  <script src='/utils/theme-switcher.js'></script>
+  <script src="/utils/cookie.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+
   <meta charset="UTF-8">
   <title></title>
 </head>
@@ -12,18 +15,21 @@
   <nav class="container-fluid">
     <ul>
       <li><a href="/" class="contrast"><strong>ACM March Madness</strong></a></li>
+      <li>
+        <mark id="nav-team-name"><a id="nav-team" href="""></a></mark>
+      </li>
     </ul>
     <ul>
       <li>
-        <details role="list">
-          <summary aria-haspopup="listbox" role="link"><a href="/compete">Compete</a> </summary>
-          <ul role="listbox">
-            <li><a href="/code">Week of Code</a></li>
-            <li><a class="off" href="#">Mini Hackathon</a></li>
-            <li><a class="off" href="#">Capture the Flag</a></li>
-            <li><a class="off" href="#">Guesstimation Contest</a></li>
-          </ul>
-        </details>
+        <details role=" list">
+            <summary aria-haspopup="listbox" role="link"><a href="/compete">Compete</a> </summary>
+            <ul role="listbox">
+              <li><a href="/code">Week of Code</a></li>
+              <li><a class="off" href="#">Mini Hackathon</a></li>
+              <li><a class="off" href="#">Capture the Flag</a></li>
+              <li><a class="off" href="#">Guesstimation Contest</a></li>
+            </ul>
+            </details>
       </li>
       <li>
         <a href="/leaderboard">Leaderboard</a>
@@ -46,6 +52,11 @@
 
 </body>
 
+<script>
+  getCookie('team') && $("#nav-team").text('➤ ' + getCookie('team')).css({"visibility": "visible"})
+  $("nav-team-name").css({"visibility": "visible"});
+</script>
+
 <style>
   *::-webkit-scrollbar {
     width: 12px;
@@ -66,6 +77,15 @@
     opacity: 0.5;
     pointer-events: none;
     cursor: not-allowed;
+  }
+
+  #nav-team-name {
+    visibility: hidden;
+  }
+
+  #nav-team {
+    color: var(--secondary);
+    visibility: hidden;
   }
 </style>
 
