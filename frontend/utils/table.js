@@ -19,7 +19,6 @@ const jsonTableToDOM = (data) => {
     let event_name = obj['-']
     let th = $("<th>");
     th.text(event_name);
-    console.log(th);
     tr.append(th);
   });
 

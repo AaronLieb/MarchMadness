@@ -9,6 +9,7 @@ export const getToken = async () => {
   }
 
   let token_box = document.getElementById('token-box');
+  let token_hint = document.getElementById('token-hint')
   let submit_button = document.getElementById('submit-team');
 
   let team_name = team_name_input.value;
@@ -38,6 +39,7 @@ export const getToken = async () => {
   })
     .then(json => {
       token_box.style.visibility = 'visible';
+      token_hint.style.visibility = 'visible';
       token_box.dataset.content = json.token
       submit_button.setAttribute("aria-busy", "false");
       submit_button.innerHTML = "<i>Team Created.</i>"

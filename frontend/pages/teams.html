@@ -32,10 +32,17 @@
 
       <form id="team-creation-form" action="#" onsubmit="event.preventDefault();">
         <input id="team-name-input" type="text" name="team_name" placeholder="team name" pattern="[a-zA-Z\W]*"
-          title="Team name must be letters and spaces only!" />
+          title="Team name must be letters and spaces only!" autocomplete="off" />
         <!-- <input type="submit" id='submit-team'> -->
         <button type='submit' id="submit-team">Create</button>
-        <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
+        <hgroup>
+          <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
+          <p id="token-hint" style="text-align: center; margin-top: 1vh; font-size: 0.7rem; visibility: hidden;">
+            <i>Provide this token to
+              your team
+              members</i>
+          </p>
+        </hgroup>
       </form>
     </article>
   </main>
@@ -52,6 +59,7 @@
   team_submit_button.addEventListener("click", getToken)
 
   let token_box = document.getElementById('token-box');
+  let token_hint = document.getElementById('token-hint');
 
   token_box.onclick = () => {
     let tok = token_box.dataset.content;
