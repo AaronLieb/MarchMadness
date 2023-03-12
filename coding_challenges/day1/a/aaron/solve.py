@@ -1,16 +1,15 @@
 def solve():
     n = int(input())
 
-    in_room = set()
-
+    in_room = 0
     max_ppl = 0
     for i in range(n):
         words = input().split()
         if words[1] == "entered":
-            max_ppl = max(max_ppl, len(in_room))
-            in_room.add(words[0])
+            in_room += 1
+            max_ppl = max(max_ppl, in_room)
         else:
-            in_room.remove(words[0])
+            in_room -= 1
 
     print(max_ppl)
 
