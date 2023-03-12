@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+  <script src='/utils/theme-switcher.js'>
 
+  </script>
   <meta charset="UTF-8">
   <title></title>
 </head>
@@ -27,7 +29,16 @@
       <li>
         <a href="/pages/leaderboard.html">Leaderboard</a>
       </li>
-
+      <li>
+        <details role="list">
+          <summary aria-haspopup="listbox" role="button" class="secondary">Theme</summary>
+          <ul role="listbox">
+            <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+            <li><a href="#" data-theme-switcher="light">Light</a></li>
+            <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+          </ul>
+        </details>
+      </li>
       <li>
         <a role='button' class='secondary outline' href="/pages/admin.html">Admin</a>
       </li>
