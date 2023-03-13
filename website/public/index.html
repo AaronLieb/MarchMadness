@@ -133,9 +133,14 @@
     let member_name = $("#name-entry")[0].value;
     $("#token-submit-button").attr('aria-busy', 'true');
     fetch(`https://api.jstitt.dev/acmmm/sheet/join_team?token=${token}&member_name=${member_name}`, {method: "GET"}).then(resp => resp.json()).then(data => {
-      if (data.team === undefined) {
-        $("#token-entry").attr("aria-invalid", true);
+      if (data.team === undefined || data.team === null) {
         $("#token-submit-button").addClass("secondary").addClass("outline").text("Token not found.").attr('aria-busy', 'false')
+        if (data.message == "bad team join, maybe member name empty!") {
+          $("#token-submit-button").text("Name Empty?");
+          $("#name-entry").attr("aria-invalid", true);
+        } else {
+          $("#token-entry").attr("aria-invalid", true);
+        }
         console.log('bad team');
         return;
       }
@@ -171,8 +176,15 @@
         on_team_header.fadeOut(100).fadeIn(300).html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
         interval = setInterval(() => {
           if (time <= 0) {
-            deleteCookie('team');
-            window.location.reload();
+            time = 0;
+            fetch(`https://api.jstitt.dev/acmmm/sheet/leave_team?team_name=${getCookie('team')}&member_name=${getCookie('name')}`,
+              {method: 'GET'})
+              .then(resp => resp.json())
+              .then(() => {
+                deleteCookie('team');
+                deleteCookie('name');
+                window.location.reload();
+              })
           }
           on_team_header.html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
           time -= 1;

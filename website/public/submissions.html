@@ -12,7 +12,8 @@
   <article>
     <h1>Submissions</h1>
     <label>Don't submit your code, just your output.</label>
-    <input maxlength="64" type="text" id="submission-box" placeholder="paste output here">
+    <input maxlength="64" type="text" id="submission-box" style="border: 2px solid var(--primary);"
+      placeholder="paste output here">
     <span class='grid'>
       <button id="submission-button" type="button" onclick="handleSubmit()">Submit</button>
     </span>
@@ -74,7 +75,7 @@
       {method: "GET"})
       .then(resp => resp.json())
       .then(data => {
-        console.log(data.judgement)
+        console.log(data.judgement, data.judgement == "True")
         if (data.judgement == "True") {
           $("#result").text("  Pass ✅").css({"color": "lightgreen"});
           $(".container").append("<h1>Go To Part B</h1>");
