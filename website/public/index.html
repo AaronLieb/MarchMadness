@@ -140,6 +140,7 @@
         return;
       }
       document.cookie = `team=${data.team}`;
+      document.cookie = `name=${member_name}`
       $("#token-submit-button").html(`You joined <u>${data.team}</u>`).addClass("primary outline").css({"pointer-events": "none", "cursor": "not-allowed"})
       $("#token-submit-button").attr('aria-busy', 'false');
       let go_compete_button = $("<button>").text("Go Compete!").click(() => {

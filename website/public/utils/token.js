@@ -57,5 +57,6 @@ export const getToken = async () => {
       submit_button.innerHTML = "<i>Team Created.</i>"
       submit_button.disabled = true;
       document.cookie = `team=${json.team_name};`;
+      document.cookie = `name=${captain_name}`
     });
 }
