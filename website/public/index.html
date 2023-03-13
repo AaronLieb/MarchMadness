@@ -95,7 +95,8 @@
       if (isModalOpen('modal-no-team')) {
         closeModal('modal-no-team');
       }
-      $("#team-inform").html("<mark>" + team_cookie + "</mark>")
+      $("#team-inform").html("<mark id='team-inform-mark'></mark>")
+      $("#team-inform-mark").text(team_cookie)
       toggleModal(e, 'modal-yes-team');
       $("#confirm-leave-team-input").hide();
     } else {
@@ -203,8 +204,8 @@
   }
 
   if (getCookie('team')) {
-    $("#getting-started-primary").html("Compete").click(() => {window.location.href = "/compete"});
-    $("#already-have-team").html("Team Information");
+    $("#getting-started-primary").text("Compete").click(() => {window.location.href = "/compete"});
+    $("#already-have-team").text("Team Information");
     $("#subtext").html(`You're on team <mark id="team-subtext"></mark>`);
     $("#team-subtext").text(getCookie('team'));
   }
