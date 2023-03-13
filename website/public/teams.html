@@ -36,8 +36,11 @@
           autocomplete="off" />
         <!-- <input type="submit" id='submit-team'> -->
         <button type='submit' id="submit-team">Create</button>
+        <button id="already-have-team-team-page" class="secondary" onclick="joinATeamInstead()">Already have a
+          team?</button>
+
         <hgroup>
-          <code data-content="whatever" style="visibility: hidden" id="token-box"></code>
+          <code data-content=" whatever" style="visibility: hidden" id="token-box"></code>
           <p id="token-hint" style="text-align: center; margin-top: 1vh; font-size: 0.7rem; visibility: hidden;">
             <i>Provide this token to
               your team
@@ -69,6 +72,15 @@
     setTimeout(() => {
       token_box.dataset.content = tok;
     }, 1000)
+  }
+
+
+</script>
+
+<script>
+  const joinATeamInstead = () => {
+    document.cookie = `already-have-team=true`
+    window.location.href = '/'
   }
 </script>
 

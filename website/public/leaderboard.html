@@ -85,15 +85,15 @@
     const showPlot = () => {
       plot_container.fadeIn(400);
       table_container.fadeOut(400);
-      to_plot.css({"font-size": "2rem", "cursor": "default"})
-      to_leaderboard.css({"cursor": "pointer", "font-size": "1.2rem"})
+      to_plot.css({"font-size": "2rem", "cursor": "default", "color": "var(--contrast)"});
+      to_leaderboard.css({"cursor": "pointer", "font-size": "1.2rem", "color": "var(--secondary)"});
     }
 
     const showLeaderboard = () => {
       table_container.fadeIn(400);
       plot_container.fadeOut(400);
-      to_leaderboard.css({"font-size": "2rem"})
-      to_plot.css({"cursor": "pointer", "font-size": "1.2rem"})
+      to_leaderboard.css({"font-size": "2rem", "color": "var(--contrast)"});
+      to_plot.css({"cursor": "pointer", "font-size": "1.2rem", "color": "var(--secondary)"});
     }
   }
 
@@ -107,6 +107,7 @@
     transition: all .2s ease-in;
     cursor: pointer;
     margin-left: 1vw;
+    color: var(--secondary);
   }
 
   #to-leaderboard {

@@ -32,14 +32,13 @@
     <article>
       <hgroup>
         <h3>Getting Started</h3>
-        <p>Create or join a team!</p>
+        <p id="subtext">Create or join a team!</p>
       </hgroup>
-      <button type="button" id="getting-started-primary" onclick="window.location.href='/teams'">Team Creation
-        Dashboard</button>
-      <section id="modal">
-        <button class="secondary" data-target="modal-no-team" onclick="openModalHook(event)">Already have a
-          team?</button>
-      </section><!-- ./ Modal -->
+      <span class='grid'>
+        <button type="button" id="getting-started-primary" onclick="window.location.href='/teams'">Create Team</button>
+        <button id="already-have-team" class="secondary" data-target="modal-no-team" onclick="openModalHook(event)">Join
+          Team</button>
+      </span>
     </article>
   </main>
   <div id="footer"></div>
@@ -156,8 +155,18 @@
     });
   }
 
+  if (getCookie('already-have-team')) {
+    setTimeout(() => {
+      document.getElementById("already-have-team").click();
+      console.log('already in a team');
+      deleteCookie('already-have-team');
+    }, 300);
+  }
+
   if (getCookie('team')) {
     $("#getting-started-primary").html("Compete").click(() => {window.location.href = "/compete"});
+    $("#already-have-team").html("Team Information");
+    $("#subtext").html(`You're on team <mark>${getCookie('team')}</mark>.`)
   }
 </script>
 
