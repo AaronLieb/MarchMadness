@@ -73,6 +73,12 @@
         margin: {t: 0},
         dragmode: 'pan',
       }
+      let dark_mode = localStorage.getItem("picoPreferredColorScheme") == 'dark';
+      if (dark_mode) {
+        layout.plot_bgcolor = "#11191f";
+        layout.paper_bgcolor = "#11191f";
+        layout.font = {color: "#ffffff"}
+      }
       container = document.getElementById('plot-container');
       Plotly.newPlot(container, data, layout);
     })
