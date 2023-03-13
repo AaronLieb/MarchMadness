@@ -14,11 +14,14 @@
     <label>Don't submit your code, just your output.</label>
     <input maxlength="64" type="text" id="submission-box" placeholder="paste output here">
     <span class='grid'>
-      <button type="button" onclick="handleSubmit()">Submit</button>
+      <button id="submission-button" type="button" onclick="handleSubmit()">Submit</button>
     </span>
     <h4>Result: <em id="result"></em> </h4>
     <article>
       <h5>Past Submissions</h5>
+      <button id="load-past-submissions" class="primary outline" type="button"
+        onclick="loadLastSubmissions()">Load...</button>
+      <div id="submissions-table"></div>
     </article>
   </article>
 </body>
@@ -37,25 +40,71 @@
     return res;
   }
 
-  const handleSubmit = async () => {
+  const getCurrentProblem = () => {
     const loc = window.location.href;
-    // const lastSegmentOfUrl = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     let part = loc.lastIndexOf('/') + 1;
     let prob = loc.substring(0, part - 1).slice(-1)
     let problem = prob + loc[part]
+    return problem;
+  }
 
+  const handleSubmit = async () => {
+    let problem = getCurrentProblem();
     let input_index = await getInputIndex();
     let output_value = $("#submission-box").val();
+    $("#submission-button").attr("aria-busy", "true");
+    $("#result").text('').attr("aria-busy", "true").css({"color": "var(--contrast)"})
+
     fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${problem}&input_index=${input_index}&output=${output_value}&team_name=${getCookie('team')}`,
       {method: "GET"})
       .then(resp => resp.json())
       .then(data => {
         if (data.judgement == "True") {
-          $("#result").text("  Pass ✅");
+          $("#result").text("  Pass ✅").css({"color": "lightgreen"});
         } else {
           $("#result").text("  Fail ❌").css({"color": "red"});
         }
+        $("#submission-button").attr("aria-busy", "false");
+        $("#result").attr("aria-busy", "false");
+      }).then(() => {
+        loadLastSubmissions();
       });
+  }
+
+  let submission_reloads = 0;
+  const createSubmissionsTable = (data) => {
+    submission_reloads += 1;
+    $("#load-past-submissions").slideUp(400).delay(50).fadeOut(200).delay(5000 + (2500 * submission_reloads)).slideDown(550).fadeIn(200);
+    let table_container = $("#submissions-table").empty();
+    let table = $("<table>");
+    let times = data['time']
+    let results = data['result']
+    let problems = data['problem']
+    let n = Object.keys(times).length
+    let thead = $("<thead>").html("<th>Date</th><th>Result</th>")
+    table.append(thead);
+
+    for (let i = n - 1; i >= 0; --i) {
+      if (problems[i] != getCurrentProblem()) continue;
+      let tr = $("<tr>");
+      let time = $("<td>").text(times[i]);
+      let result = $("<td>").text(results[i] == "TRUE" ? "✅" : "❌");
+      tr.append(time).append(result);
+      table.append(tr);
+    }
+    table_container.append(table);
+  }
+
+  const loadLastSubmissions = () => {
+    let team = getCookie('team')
+    if (team === undefined) {
+      console.log("Can't load submissions if you're not on a team")
+      return;
+    }
+    fetch(`https://api.jstitt.dev/acmmm/sheet/get_submissions?team_name=${team}&problem=${getCurrentProblem()}`,
+      {method: "GET"})
+      .then(resp => resp.json())
+      .then(data => createSubmissionsTable(data['data']));
   }
 
 </script>
