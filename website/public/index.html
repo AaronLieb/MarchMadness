@@ -77,7 +77,8 @@
         Different Team</a>
     </footer>
     <footer>
-      <input type="" name="" value="" placeholder='Enter "leave my team" to leave' id="confirm-leave-team-input">
+      <input type="" name="" value="" placeholder="Enter your team's token to leave" id="confirm-leave-team-input">
+      <button id='im-sure' type="button">I'm Sure</button>
     </footer>
   </article>
 </dialog>
@@ -127,6 +128,8 @@
 
   });
 
+  $("#im-sure").hide()
+
 
   const submitToken = (e) => {
     let token = $("#token-entry")[0].value;
@@ -155,44 +158,40 @@
     });
   }
 
+  let curr_text = '';
   const differentTeam = () => {
-    console.log('diff team');
     let yes_team_grid = $("#different-team-button");
     let on_team_header = $("#on-team-header");
     old_team_header_html = on_team_header.html();
-    let time = 5;
     $("#confirm-leave-team-input").val("").attr('aria-invalid', '');
     let different_team_input = $("#confirm-leave-team-input").fadeIn(300).css({"margin-top": "1.5vh"}).on('input', (e) => {
-      let curr_text = e.target.value;
-      if (curr_text == "") {
+      curr_text = e.target.value;
+    })
+    $("#im-sure").attr('disabled', true).fadeIn(450).click(triggerTeamLeave);
+  };
 
-      }
-      else if (curr_text != "leave my team") {
-        $("#confirm-leave-team-input").attr('aria-invalid', 'true');
-        clearInterval(interval);
-        time = 5;
-      } else if (curr_text == "leave my team") {
-        $("#confirm-leave-team-input").attr('aria-invalid', 'false');
-        on_team_header.fadeOut(100).fadeIn(300).html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
-        interval = setInterval(() => {
-          if (time <= 0) {
-            time = 0;
-            fetch(`https://api.jstitt.dev/acmmm/sheet/leave_team?team_name=${getCookie('team')}&member_name=${getCookie('name')}`,
-              {method: 'GET'})
-              .then(resp => resp.json())
-              .then(() => {
-                deleteCookie('team');
-                deleteCookie('name');
-                window.location.reload();
-              })
-          }
-          on_team_header.html(`You are <b>leaving</b> team <mark>${getCookie('team')}</mark> in ${time} seconds!`)
-          time -= 1;
-        }, 1000)
-      }
+  $("#confirm-leave-team-input").on("input", () => {
+    if ($("#confirm-leave-team-input").val().length > 3) {
+      $("#im-sure").attr('disabled', false).text("I'm Sure")
+    }
+  })
 
-    });
+  const triggerTeamLeave = () => {
+    $("#im-sure").attr("aria-busy", 'true')
+    fetch(`https://api.jstitt.dev/acmmm/sheet/leave_team?team_name=${getCookie('team')}&member_name=${getCookie('name')}&token=${curr_text}`,
+      {method: 'GET'})
+      .then(resp => resp.json())
+      .then((data) => {
+        if (data['message'] == "Team Leave successful") {
+          deleteCookie('team');
+          deleteCookie('name');
+          window.location.reload();
+        } else {
+          $("#im-sure").text("Bad Token...").attr('disabled', true).attr("aria-busy", 'false')
+        }
+      })
   }
+
 
   if (getCookie('already-have-team')) {
     setTimeout(() => {
