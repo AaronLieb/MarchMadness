@@ -205,7 +205,8 @@
   if (getCookie('team')) {
     $("#getting-started-primary").html("Compete").click(() => {window.location.href = "/compete"});
     $("#already-have-team").html("Team Information");
-    $("#subtext").html(`You're on team <mark>${getCookie('team')}</mark>.`)
+    $("#subtext").html(`You're on team <mark id="team-subtext"></mark>`);
+    $("#team-subtext").text(getCookie('team'));
   }
 </script>
 
