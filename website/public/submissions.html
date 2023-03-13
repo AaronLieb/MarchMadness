@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+
+<body>
+  <article>
+    <h1>Submissions</h1>
+    <label>Don't submit your code, just your output.</label>
+    <input maxlength="64" type="text" name="" value="" placeholder="paste output here">
+    <span class='grid'>
+      <button type="button" onclick="handleSubmit()">Submit</button>
+    </span>
+    <article>
+      <h5>Past Submissions</h5>
+    </article>
+  </article>
+</body>
+
+<script>
+  const handleSubmit = () => {
+    const lastSegmentOfUrl = this.href.substring(this.href.lastIndexOf('/') + 1);
+    console.log(lastSegmentOfUrl);
+  }
+
+</script>
+
+</html>
