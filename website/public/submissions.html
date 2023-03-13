@@ -78,8 +78,10 @@
         console.log(data.judgement, data.judgement == "True")
         if (data.judgement == "True") {
           $("#result").text("  Pass ✅").css({"color": "lightgreen"});
-        } else {
+        } else if (data.judgement == "False") {
           $("#result").text("  Fail ❌").css({"color": "red"});
+        } else {
+          $("#result").text("Something happened, try submitting again").css({"color": "red"});
         }
         $("#submission-button").attr("aria-busy", "false");
         $("#result").attr("aria-busy", "false");
