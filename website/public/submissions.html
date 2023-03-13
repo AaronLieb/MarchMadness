@@ -3,14 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
   <article>
     <h1>Submissions</h1>
     <label>Don't submit your code, just your output.</label>
-    <input maxlength="64" type="text" name="" value="" placeholder="paste output here">
+    <input maxlength="64" type="text" id="submission-box" placeholder="paste output here">
     <span class='grid'>
       <button type="button" onclick="handleSubmit()">Submit</button>
     </span>
@@ -21,9 +23,27 @@
 </body>
 
 <script>
-  const handleSubmit = () => {
-    const lastSegmentOfUrl = this.href.substring(this.href.lastIndexOf('/') + 1);
-    console.log(lastSegmentOfUrl);
+  const getInputIndex = async () => {
+    var index = 0;
+    if (!getCookie('team')) {
+      console.log('cant get index of empty team');
+      return;
+    }
+    const res = fetch(`https://api.jstitt.dev/acmmm/sheet/get_index?team_name=${getCookie('team')}`,
+      {method: 'GET'})
+      .then(resp => resp.json())
+      .then(data => {return data['index'];});
+    return res;
+  }
+
+  const handleSubmit = async () => {
+    const lastSegmentOfUrl = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    let input_index = await getInputIndex();
+    let output_value = $("#submission-box").val();
+    fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${lastSegmentOfUrl}&input_index=${input_index}&output=${output_value}`,
+      {method: "GET"})
+      .then(resp => resp.json())
+      .then(data => console.log(data));
   }
 
 </script>
