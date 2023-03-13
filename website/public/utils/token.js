@@ -1,8 +1,9 @@
 export const getToken = async () => {
   let team_name_input = document.getElementById('team-name-input');
+  let captain_name_input = document.getElementById('member-name-input');
   // check validity of input field against pattern [a-zA-Z\W]*
-  if (!team_name_input.validity.valid) {
-    console.log('Invalid Team Name: ');
+  if (!team_name_input.validity.valid || !captain_name_input.validity.valid) {
+    console.log('Invalid Team Name or captain name');
     return;
   }
 
@@ -11,6 +12,7 @@ export const getToken = async () => {
   let submit_button = document.getElementById('submit-team');
 
   let team_name = team_name_input.value;
+  let captain_name = captain_name_input.value;
 
   let old_content = submit_button.innerText;
   let already_created = false;
@@ -33,7 +35,7 @@ export const getToken = async () => {
       count += 1
   }
 
-  fetch(`https://api.jstitt.dev/acmmm/sheet/create_team?team_name=${team_name}`, {
+  fetch(`https://api.jstitt.dev/acmmm/sheet/create_team?team_name=${team_name}&captain_name=${captain_name}`, {
     method: "GET",
   }).then(res => {
     if (!res.ok || count <= 1) {

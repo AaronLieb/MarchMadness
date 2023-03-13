@@ -51,7 +51,11 @@
       <h3 class="contrast">Enter your team's <strong>token<strong></h3>
       <p><small>After one person from your team has received a token, enter it here</small></p>
     </hgroup>
-    <input type="text" name="token-entry" value="" placeholder="<token>" id="token-entry" />
+    <input maxlength='64' pattern="[a-zA-Z]{2,64}" type="text" name="token-entry" value="" placeholder="<token>"
+      id="token-entry" title="Get your token from your team captain. lowercase letters." />
+    <input maxlength="32" id="name-entry" type="text" placeholder="Your Name" pattern="[a-zA-Z ]{2,32}"
+      title="Your name should be of length [2, 32] consisting of letters and spaces only!" autocomplete="off" />
+
     <footer class="grid" id="token-buttons">
       <a id="token-submit-button" href="#confirm" role="button" data-target="modal-no-team"
         onclick="submitToken(event)">Confirm</a>
@@ -99,17 +103,39 @@
   }
 
   $("#token-entry").on("input", () => {
-    $("#token-entry").attr('aria-invalid', '');
-    $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm");
+    if (!$("#token-entry")[0].validity.valid) {
+      $("#token-submit-button").addClass("secondary").addClass("outline").text("Bad Token").attr('aria-busy', 'false')
+    } else if ($("#name-entry")[0].validity.valid) {
+      $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm").attr('aria-busy', 'false')
+      $("#token-entry").attr("aria-invalid", '');
+    }
+    if ($("#name-entry")[0].validity.valid && $("#token-entry")[0].validity.valid) {
+      $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm").attr('aria-busy', 'false')
+    }
   })
+
+  $("#name-entry").on('input', () => {
+    if (!$("#name-entry")[0].validity.valid) {
+      $("#token-submit-button").addClass("secondary").addClass("outline").text("Bad Name").attr('aria-busy', 'false')
+    } else if ($("#token-entry")[0].validity.valid) {
+      $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm").attr('aria-busy', 'false')
+      $("#name-entry").attr("aria-invalid", '');
+    }
+    if ($("#name-entry")[0].validity.valid && $("#token-entry")[0].validity.valid) {
+      $("#token-submit-button").removeClass("secondary").removeClass("outline").text("Confirm").attr('aria-busy', 'false')
+    }
+
+  });
+
 
   const submitToken = (e) => {
     let token = $("#token-entry")[0].value;
+    let member_name = $("#name-entry")[0].value;
     $("#token-submit-button").attr('aria-busy', 'true');
-    fetch(`https://api.jstitt.dev/acmmm/sheet/token_lookup?token=${token}`, {method: "GET"}).then(resp => resp.json()).then(data => {
+    fetch(`https://api.jstitt.dev/acmmm/sheet/join_team?token=${token}&member_name=${member_name}`, {method: "GET"}).then(resp => resp.json()).then(data => {
       if (data.team === undefined) {
         $("#token-entry").attr("aria-invalid", true);
-        $("#token-submit-button").addClass("secondary").addClass("outline").text("Token not found.")
+        $("#token-submit-button").addClass("secondary").addClass("outline").text("Token not found.").attr('aria-busy', 'false')
         console.log('bad team');
         return;
       }
@@ -169,5 +195,11 @@
     $("#subtext").html(`You're on team <mark>${getCookie('team')}</mark>.`)
   }
 </script>
+
+<style>
+  input:invalid {
+    border-color: red;
+  }
+</style>
 
 </html>

@@ -48,19 +48,36 @@
     return problem;
   }
 
+  let bttn = $("#submission-button").attr("disabled", true).addClass("outline").addClass("secondary");
+  $("#submission-box").on("input", () => {
+    let value = $("#submission-box").val();
+    if (value.length < 1)
+      bttn.attr("disabled", true).addClass("outline").addClass("secondary");
+    else {
+      console.log('here')
+      bttn.removeAttr("disabled", true).removeClass("outline").removeClass("secondary");
+
+    }
+
+  });
+
+
   const handleSubmit = async () => {
     let problem = getCurrentProblem();
     let input_index = await getInputIndex();
     let output_value = $("#submission-box").val();
     $("#submission-button").attr("aria-busy", "true");
     $("#result").text('').attr("aria-busy", "true").css({"color": "var(--contrast)"})
+    $("#submission-button").slideUp(500).delay(6000).slideDown(550);
 
     fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${problem}&input_index=${input_index}&output=${output_value}&team_name=${getCookie('team')}`,
       {method: "GET"})
       .then(resp => resp.json())
       .then(data => {
+        console.log(data.judgement)
         if (data.judgement == "True") {
           $("#result").text("  Pass ✅").css({"color": "lightgreen"});
+          $(".container").append("<h1>Go To Part B</h1>");
         } else {
           $("#result").text("  Fail ❌").css({"color": "red"});
         }

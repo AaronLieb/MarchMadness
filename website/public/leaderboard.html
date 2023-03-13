@@ -48,7 +48,7 @@
   // fetch data from endpoint
 
   let xs, ys, teams;
-  const COMP_START = '2023-03-12 12:30:00' // TODO: change this to actual comp start
+  const COMP_START = '2023-03-12 22:30:00' // TODO: change this to actual comp start
   const fetchGraphData = async () => {
     fetch('https://api.jstitt.dev/acmmm/sheet/get_graph', {method: 'GET'}).then(resp => resp.json()).then(data => {
       xs = data['xs'];
