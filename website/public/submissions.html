@@ -46,7 +46,7 @@
 
     let input_index = await getInputIndex();
     let output_value = $("#submission-box").val();
-    fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${problem}&input_index=${input_index}&output=${output_value}`,
+    fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${problem}&input_index=${input_index}&output=${output_value}&team_name=${getCookie('team')}`,
       {method: "GET"})
       .then(resp => resp.json())
       .then(data => {
