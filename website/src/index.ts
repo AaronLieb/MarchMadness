@@ -15,7 +15,8 @@ app.use(cookieParser())
 app.get('/inputs/:day/:part', async (req, res) => {
   if (!req.cookies.team)
     res.status(400).send('You must create a team!');
-  const url = `https://api.jstitt.dev/acmmm/sheet/get_index`;
+  const url = `https://api.jstitt.dev/acmmm/sheet/get_index?team_name=${
+      req.cookies.team}`;
   const index = (await fetch(url).then(res => res.json())).index;
   const file = `/../inputs/${req.params.day}/${req.params.part}/${index}.in`;
   res.sendFile(path.join(__dirname + file));
