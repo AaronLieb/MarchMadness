@@ -1,4 +1,4 @@
-# Day 1 - Parsing People
+# Day 1 - Parsing People - Part A
 
 ACM at CSUF hosted a workshop on string parsing.
 
@@ -58,7 +58,7 @@ Norma left the room
 
 Expected Output
 ```
-4
+5
 ```
 
 Input
@@ -83,7 +83,7 @@ Greg left the room
 Expected Output
 
 ```
-5
+6
 ```
 
 ## Constraints
