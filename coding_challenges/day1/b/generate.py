@@ -1,8 +1,8 @@
 import names
 import random
 
-MIN_PEOPLE = 10000
-MAX_PEOPLE = 20000
+MIN_PEOPLE = 10
+MAX_PEOPLE = 10
 
 def long_list(people):
     people_str = ""
