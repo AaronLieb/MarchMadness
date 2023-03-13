@@ -105,7 +105,7 @@
 
   const submitToken = (e) => {
     let token = $("#token-entry")[0].value;
-    $("token-submit-button").attr('aria-busy', 'true');
+    $("#token-submit-button").attr('aria-busy', 'true');
     fetch(`https://api.jstitt.dev/acmmm/sheet/token_lookup?token=${token}`, {method: "GET"}).then(resp => resp.json()).then(data => {
       if (data.team === undefined) {
         $("#token-entry").attr("aria-invalid", true);
@@ -115,7 +115,7 @@
       }
       document.cookie = `team=${data.team}`;
       $("#token-submit-button").html(`You joined <u>${data.team}</u>`).addClass("primary outline").css({"pointer-events": "none", "cursor": "not-allowed"})
-      $("token-submit-button").attr('aria-busy', 'false');
+      $("#token-submit-button").attr('aria-busy', 'false');
       let go_compete_button = $("<button>").text("Go Compete!").click(() => {
         window.location.href = "/compete";
       });

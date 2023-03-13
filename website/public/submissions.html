@@ -107,6 +107,15 @@
       .then(data => createSubmissionsTable(data['data']));
   }
 
+  if (!getCookie('team')) {
+    $("body").css({'filter': 'blur(25px)'})
+    setTimeout(() => {
+      window.alert("You must join a team to compete!")
+      window.location.href = '/';
+    }, 25);
+  }
+
+
 </script>
 
 <style>
