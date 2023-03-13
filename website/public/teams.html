@@ -84,10 +84,13 @@
 
   let token_box = document.getElementById('token-box');
   let token_hint = document.getElementById('token-hint');
+  let tok = token_box.dataset.content;
+  let old = undefined;
 
   token_box.onclick = () => {
     let tok = token_box.dataset.content;
-    navigator.clipboard.writeText(tok ?? '');
+    if (old === undefined) old = tok
+    navigator.clipboard.writeText(old ?? '');
     token_box.dataset.content = "copied to clipboard!"
     setTimeout(() => {
       token_box.dataset.content = tok;
