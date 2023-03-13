@@ -77,7 +77,7 @@
         Different Team</a>
     </footer>
     <footer>
-      <input type="" name="" value="" placeholder="Enter your team's token to leave" id="confirm-leave-team-input">
+      <!-- <input type="" name="" value="" placeholder="Enter your team's token to leave" id="confirm-leave-team-input"> -->
       <button id='im-sure' type="button">I'm Sure</button>
     </footer>
   </article>
@@ -160,35 +160,36 @@
 
   let curr_text = '';
   const differentTeam = () => {
+    $("#im-sure").css({'margin-top': '2vh'}).fadeIn(300).click(triggerTeamLeave);
     let yes_team_grid = $("#different-team-button");
     let on_team_header = $("#on-team-header");
     old_team_header_html = on_team_header.html();
-    $("#confirm-leave-team-input").val("").attr('aria-invalid', '');
+    // $("#confirm-leave-team-input").val("").attr('aria-invalid', '');
     let different_team_input = $("#confirm-leave-team-input").fadeIn(300).css({"margin-top": "1.5vh"}).on('input', (e) => {
       curr_text = e.target.value;
     })
-    $("#im-sure").attr('disabled', true).fadeIn(450).click(triggerTeamLeave);
+    // $("#im-sure").attr('disabled', true).fadeIn(450).click(triggerTeamLeave);
   };
 
-  $("#confirm-leave-team-input").on("input", () => {
-    if ($("#confirm-leave-team-input").val().length > 3) {
-      $("#im-sure").attr('disabled', false).text("I'm Sure")
-    }
-  })
+  // $("#confirm-leave-team-input").on("input", () => {
+  //   if ($("#confirm-leave-team-input").val().length > 3) {
+  //     $("#im-sure").attr('disabled', false).text("I'm Sure")
+  //   }
+  // })
 
   const triggerTeamLeave = () => {
     $("#im-sure").attr("aria-busy", 'true')
-    fetch(`https://api.jstitt.dev/acmmm/sheet/leave_team?team_name=${getCookie('team')}&member_name=${getCookie('name')}&token=${curr_text}`,
+    fetch(`https://api.jstitt.dev/acmmm/sheet/leave_team?team_name=${getCookie('team')}&member_name=${getCookie('name')}`,
       {method: 'GET'})
       .then(resp => resp.json())
       .then((data) => {
         if (data['message'] == "Team Leave successful") {
-          deleteCookie('team');
-          deleteCookie('name');
-          window.location.reload();
-        } else {
-          $("#im-sure").text("Bad Token...").attr('disabled', true).attr("aria-busy", 'false')
         }
+      })
+      .then(() => {
+        deleteCookie('team');
+        deleteCookie('name');
+        window.location.reload();
       })
   }
 
