@@ -13,7 +13,6 @@ app.use(express.json());
 app.use(cookieParser())
 
 app.get('/inputs/:day/:part', async (req, res) => {
-  console.log(req.cookies)
   if (!req.cookies.team) res.status(400).send('Missing team name');
   const url = `https://api.jstitt.dev/acmmm/sheet/get_index?team_name=${req.query.team_name}`;
   const index = (await fetch(url).then(res => res.json())).index;
