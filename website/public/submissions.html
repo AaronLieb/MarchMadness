@@ -16,6 +16,7 @@
     <span class='grid'>
       <button type="button" onclick="handleSubmit()">Submit</button>
     </span>
+    <h4>Result: <em id="result"></em> </h4>
     <article>
       <h5>Past Submissions</h5>
     </article>
@@ -37,15 +38,32 @@
   }
 
   const handleSubmit = async () => {
-    const lastSegmentOfUrl = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    const loc = window.location.href;
+    // const lastSegmentOfUrl = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    let part = loc.lastIndexOf('/') + 1;
+    let prob = loc.substring(0, part - 1).slice(-1)
+    let problem = prob + loc[part]
+
     let input_index = await getInputIndex();
     let output_value = $("#submission-box").val();
-    fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${lastSegmentOfUrl}&input_index=${input_index}&output=${output_value}`,
+    fetch(`https://api.jstitt.dev/acmmm/sheet/get_judgement?problem=${problem}&input_index=${input_index}&output=${output_value}`,
       {method: "GET"})
       .then(resp => resp.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if (data.judgement == "True") {
+          $("#result").text("  Pass ✅");
+        } else {
+          $("#result").text("  Fail ❌").css({"color": "red"});
+        }
+      });
   }
 
 </script>
+
+<style>
+  #result {
+    color: lightgreen;
+  }
+</style>
 
 </html>
