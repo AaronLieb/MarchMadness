@@ -5,7 +5,7 @@ It's Pi day and your physics professor is giving the class an extra credit
 assignment.
 
 Write a program that takes two inputs: a string representing the decimal
-expansion of Pi (up to at least 1000 decimal places), and a three-digit
+expansion of Pi (up to at most 3141 decimal places, with a minimum of 777 digits), and a three-digit
 integer. The program should first count the number of times the three-digit
 integer occurs in the Pi string, and then count the number of times that count
 occurs in the Pi string as well. Return the final count as the output.
@@ -30,7 +30,7 @@ A hiring agency is looking for the most precise engineers, and wants to know wha
 
 Thankfully, there was a recent baking contest for engineers.
 
-Each engineer was tasked with baking a pie of a specified radius. 
+Each engineer was tasked with baking a pie of a specified radius.
 
 Each engineer needed to know how much pie crust to put on the top, so they each calculated the area of the top of the pie.
 
@@ -83,7 +83,7 @@ cover the top of the pie completely with crust.
 
 Baking pans were provided to the engineers that guaranteed that the pie is the
 specified radius. While calculating the area, many of the engineers used
-approximations for π that were "close enough". 
+approximations for π that were "close enough".
 
 The hiring agency holds the strong belief that the value of π used should
 always be at least 15 decimal places. Here is the value of π to the 15th
@@ -102,13 +102,13 @@ engineer estimated.
 ## Output
 
 The hiring agency is interested in the engineers that used the most accurate
-value of π. 
+value of π.
 
 For each engineer, you should determine what approximate value of
-π they used to calculate the area. 
+π they used to calculate the area.
 
 Each engineer's "error" is the difference between their approximate value of π
-and the "real" value of π. 
+and the "real" value of π.
 
 Output one integer, the product of the radii given to the 5 engineers with the
 lowest error.
@@ -119,6 +119,3 @@ lowest error.
 `1 <= r <= 20`
 
 ## Examples
-
-
-
