@@ -10,6 +10,7 @@ def solve():
     for i in range(n):
         words = input().split()
         words = list(filter (lambda w: w not in ignore_list, words))
+        print(words)
         num = len(words) - 1
         dir = words[-1]
 
