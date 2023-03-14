@@ -76,6 +76,7 @@
         role=button>Join
         Different Team</a>
     </footer>
+    <p>Token: <mark id="token-show"></mark></p>
     <footer>
       <!-- <input type="" name="" value="" placeholder="Enter your team's token to leave" id="confirm-leave-team-input"> -->
       <button id='im-sure' type="button">I'm Sure</button>
@@ -84,6 +85,20 @@
 </dialog>
 
 <script>
+
+  const getToken = () => {
+    if (getCookie('team') == '') return;
+    fetch(`https://api.jstitt.dev/acmmm/sheet/get_token?team_name=${getCookie('team')}`, {method: 'GET'}).then(resp => resp.json()).then(data => {document.cookie = `token=${data.token}`; $("#token-show").text(getCookie('token'))})
+    // .then(data => {document.cookie = `token=${data['token']}`})
+  };
+
+  let ctoken = getCookie('token');
+  if (ctoken == '')
+    getToken();
+  else {
+    $("#token-show").text(ctoken);
+  }
+
   let interval;
   let old_team_header_html;
   const openModalHook = (e) => {
@@ -190,6 +205,7 @@
       .then(() => {
         deleteCookie('team');
         deleteCookie('name');
+        deleteCookie('token');
         window.location.reload();
       })
   }
