@@ -33,7 +33,7 @@ for p1 in points:
             radius = max(dist(mid, p1), dist(mid, p2), dist(mid, p3))
             smallest = min(smallest, circumference(radius))
 
-print(smallest)
+print(f'{smallest:.2f}')
 
 
 # get all possible permk
