@@ -1,1 +1,78 @@
-ok give us like 10 minutes, we are pushing this out last second lol
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+      $("#submissions").load("/submissions.html")
+    });
+  </script>
+
+  <title>Problem 1</title>
+</head>
+
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+<hgroup>
+<h1>Day 2 - Patterns in π - Part A</h1>
+<h3 id="next-part"><a href="/problems/2/b">Go to part b</a></h3>
+</hgroup>
+<p>Happy Pi Day! Your physics professor, Professor Pippy wanted to do a fun<br />
+pi-related problem.</p>
+<p>Here’s the challenge:</p>
+<p>Write a program that takes in two inputs.</p>
+<p>The first input is a string that represents the decimal expansion of Pi.<br />
+The second input is a three-digit integer <code>d</code></p>
+<ol>
+<li>
+<p>Count the number of times the three-digit integer <code>d</code> occurs in<br />
+the Pi string <code>c</code></p>
+</li>
+<li>
+<p>Then count the number of times that <code>c</code> occurs in<br />
+the Pi string.</p>
+</li>
+</ol>
+<p>Unfortunately, professor Pippy had to leave for a dentist appointment<br />
+scheduled at 3:14pm!</p>
+<p>Help professor Pippy solve this problem and you might just get an A in the class!</p>
+<h2>Input</h2>
+<p>A string S representing the decimal expansion of Pi<br />
+A three-digit integer N (for example, 123, 456, or 789)</p>
+<h5><a href="/inputs/2/a/" target="_blank">Click here to get your input!</a></h5>
+<h2>Output</h2>
+<p>The number of times that <code>c</code> appears in the given pi string.</p>
+<h2>Constraints</h2>
+<p><code>100 &lt;= d &lt;= 999</code><br />
+<code>777 &lt;= pi string length &lt;= 3141</code></p>
+<h2>Examples</h2>
+<p>Input</p>
+<pre><code>749
+3.1415926535897932384626433832795028841971693993751058209749445
+</code></pre>
+<p>Expected output</p>
+<pre><code>5
+</code></pre>
+<p>Input</p>
+<pre><code>360
+3.1415965358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196442881097566593344612847564823378678316527120190914564856692346034861045432664821339360726024914127372458700660631558817488152092096282925409171536436789259036001133053054882046652138414695194151160
+</code></pre>
+<p>Expected output</p>
+<pre><code>44
+</code></pre>
+<div id="submissions"></div>
+<h3 id="next-part"><a href="/problems/2/b">Go to part b</a></h3>
+<div id="footer"></div>
+</body>
+</html>
