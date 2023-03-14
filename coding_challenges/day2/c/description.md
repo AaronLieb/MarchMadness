@@ -1,7 +1,5 @@
 # Day 2 - π and pie  - Part C
 
-## Input
-
 Professor Pippy is going to his dentist appointment. He's very concerned that
 he might get ripped off by the dentist, so he always consults three differnet
 offices.
@@ -12,15 +10,20 @@ offices that are closet to eachother.
 In order to find out which dentist offices are the closest, he found all
 groupings of 3 offices and drew a circle that perfect encompassed all of them.
 
+The smaller the radius of the circle, the closer the dentist offices are.
+
+This is really hard to do by hand, so Professor Pippy has asked if you could
+help him locate the 3 dentist offices that are closest together (smallest radius)
+
+## Input
+
 The first line contains an integer `n`, the number of dentist offices
 
 The next `n` following lines contain an integer `x` and a decimal `y`.
 
-`r` is the radius of the pie, and `a` is the area of the top of the pie that the
-engineer estimated.
-
 ## Output
 
+Output the circumference of the smallest circle containing 3 dentist offices.
 
 ## Constraints
 `n = 20`
