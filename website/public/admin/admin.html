@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script type='module' src="../utils/teamnames.js"></script>
+  <script type='module' src="../utils/token.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+    });
+  </script>
+
+  <title>Admin</title>
+</head>
+
+<body>
+  <div id="header"></div>
+  <main class="container" style="margin-top: -10vh;">
+    <h1>Admin Console</h1>
+  </main>
+  <div id="footer"></div>
+</body>
+
+<style>
+  .container {
+    min-height: 94vh;
+  }
+</style>
+
+</html>
