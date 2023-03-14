@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script type='module' src="../utils/teamnames.js"></script>
+  <script type='module' src="../utils/token.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+  <script src="/utils/cookie.js"></script>
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+    });
+  </script>
+
+  <script src="../utils/jquery.countdown.min.js"></script>
+
+  <title>Hackathon</title>
+</head>
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+    <hgroup>
+      <h2>Mini Hackathon</h2>
+      <p>Move quickly, you've only got 2 hours!</p>
+    </hgroup>
+    <a role="button" href="https://docs.google.com/forms/d/e/1FAIpQLSfgUq4AZT3x7N-2M5Xaz55wdE_NGVNg6W6OaNk5boVZV68YUA/viewform?usp=sf_link" target=_blank>Submit</a>
+    <article>
+      <h3>Themes</h3>
+      <hgroup>
+        <h4>Productivity</h4>
+        <p>Help during your day-to-day</p>
+      </hgroup>
+      <hgroup>
+        <h4>Visualization</h4>
+        <p>Making data look cool</p>
+      </hgroup>
+      <hgroup>
+        <h4>Monkey</h4>
+        <p>Return to your primal state.</p>
+      </hgroup>
+      </ul>
+      <h3>Task</h3>
+      <p>Choose a theme, and then build any project relating to it. Create a GitHub repo and add a <code>README.md</code> file.</p>
+      <h3>Submission</h3>
+      <p>Submit the link to your GitHub repo. All demonstrations of your creation (images, gifs, description) must be in the <code>README.md</code> file</p>
+      <p>You are allowed to edit your <code>README.md</code> file up until it is read by the judge.</p>
+    </article>
+  </main>
+  <div id="footer"></div>
+</body>
+
+<script>
+  if (getCookie('team')) {
+    $("#compete-for").html("You are on team " + "<mark style='color: var(--secondary)';>" + getCookie('team') + "</mark>");
+  }
+
+</script>
+
+</html>
