@@ -17,6 +17,8 @@
     });
   </script>
 
+  <script src="/utils/jquery.countdown.min.js"></script>
+
   <title>Problem 1</title>
 </head>
 
@@ -24,80 +26,104 @@
 <body>
   <div id="header"></div>
   <main class="container">
-<hgroup>
-<h1>Day 2 - π and pie  - Part B</h1>
-<h3 id="next-part"><a href="/problems/2/a">Go back to part a</a></h3>
-<h3 id="next-part"><a href="/problems/2/c">Go to part c (launches at 3:14pm)</a></h3>
-</hgroup>
-<p>A hiring agency is looking for the most precise engineers and wants to know<br />
-which engineers to hire.</p>
-<p>Thankfully, there was a recent baking contest for engineers. Each engineer was<br />
-tasked with baking a pie of a specified radius.</p>
-<p>The engineers suck at baking and all of their pies turned out perfectly flat.<br />
-Since the top of the pie is always completely flat, the engineers needed to<br />
-know the area of the top of the pie to determine how much dough they needed to<br />
-cover the top of the pie completely with crust.</p>
-<p>Baking pans were provided to the engineers that guaranteed that the pie is the<br />
-specified radius. While calculating the area, many of the engineers used<br />
-approximations for π that were “close enough”.</p>
-<p>The hiring agency holds the strong belief that the value of π used should<br />
-always be at least 15 decimal places. Here is the value of π to the 15th<br />
-decimal place (you should use this value as your “real” value of π):</p>
-<p>π = <code>3.141592653589793</code></p>
-<h2>Input</h2>
-<p>The first line contains an integer <code>n</code>, the number of engineers.</p>
-<p>The next <code>n</code> following lines contain an integer <code>r</code> and a decimal <code>a</code>.</p>
-<p><code>r</code> is the radius of the pie, and <code>a</code> is the area of the top of the pie that the<br />
-engineer estimated.</p>
-<h5><a href="/inputs/2/b/" target="_blank">Click here to get your input!</a></h5>
-<h2>Output</h2>
-<p>The hiring agency is interested in the engineers that used the most accurate<br />
-value of π.</p>
-<p>For each engineer, you should determine what approximate value of<br />
-π they used to calculate the area.</p>
-<p>Each engineer’s “error” is the difference between their approximate value of π<br />
-and the “real” value of π.</p>
-<p>Output one integer, the product of the radii given to the 5 engineers with the<br />
-lowest error.</p>
-<h2>Constraints</h2>
-<p><code>10000 &lt;= n &lt;= 20000</code></p>
-<p><code>1 &lt;= r &lt;= 20</code></p>
-<h2>Examples</h2>
-<p>Input</p>
-<pre><code>8
-17 1114.2337829671942
-12 508.4958416468331
-16 534.1319285143168
-19 1318.540758136722
-14 429.68040059057483
-16 740.962178105143
-18 1015.2554404694425
-10 285.5274332392959
-</code></pre>
-<p>Expected output</p>
-<pre><code>656640
-</code></pre>
-<p>Input</p>
-<pre><code>10
-12 415.87439964076873
-16 677.9721431852045
-15 552.1617255431586
-20 1017.6519886367032
-10 257.1309252497689
-13 510.323715360094
-15 479.63127526041376
-10 378.9333879565738
-19 1149.0329697621244
-15 648.5212239205142
-</code></pre>
-<p>Expected output</p>
-<pre><code>711360
-</code></pre>
-<div id="submissions"></div>
-<h3 id="next-part"><a href="/problems/2/c">Go to part c (launches at 3:14pm)</a></h3>
-<div id="footer"></div>
+    <hgroup>
+      <h1>Day 2 - π and pie - Part B</h1>
+      <h3 id="next-part"><a href="/problems/2/a">Go back to part a</a></h3>
+      <h3 id="next-part"><a href="/problems/2/c">Go to part c (launches at 3:14pm)</a></h3>
+    </hgroup>
+    <p>A hiring agency is looking for the most precise engineers and wants to know<br />
+      which engineers to hire.</p>
+    <p>Thankfully, there was a recent baking contest for engineers. Each engineer was<br />
+      tasked with baking a pie of a specified radius.</p>
+    <p>The engineers suck at baking and all of their pies turned out perfectly flat.<br />
+      Since the top of the pie is always completely flat, the engineers needed to<br />
+      know the area of the top of the pie to determine how much dough they needed to<br />
+      cover the top of the pie completely with crust.</p>
+    <p>Baking pans were provided to the engineers that guaranteed that the pie is the<br />
+      specified radius. While calculating the area, many of the engineers used<br />
+      approximations for π that were “close enough”.</p>
+    <p>The hiring agency holds the strong belief that the value of π used should<br />
+      always be at least 15 decimal places. Here is the value of π to the 15th<br />
+      decimal place (you should use this value as your “real” value of π):</p>
+    <p>π = <code>3.141592653589793</code></p>
+    <h2>Input</h2>
+    <p>The first line contains an integer <code>n</code>, the number of engineers.</p>
+    <p>The next <code>n</code> following lines contain an integer <code>r</code> and a decimal <code>a</code>.</p>
+    <p><code>r</code> is the radius of the pie, and <code>a</code> is the area of the top of the pie that the<br />
+      engineer estimated.</p>
+    <h5><a href="/inputs/2/b/" target="_blank">Click here to get your input!</a></h5>
+    <h2>Output</h2>
+    <p>The hiring agency is interested in the engineers that used the most accurate<br />
+      value of π.</p>
+    <p>For each engineer, you should determine what approximate value of<br />
+      π they used to calculate the area.</p>
+    <p>Each engineer’s “error” is the difference between their approximate value of π<br />
+      and the “real” value of π.</p>
+    <p>Output one integer, the product of the radii given to the 5 engineers with the<br />
+      lowest error.</p>
+    <h2>Constraints</h2>
+    <p><code>10000 &lt;= n &lt;= 20000</code></p>
+    <p><code>1 &lt;= r &lt;= 20</code></p>
+    <h2>Examples</h2>
+    <p>Input</p>
+    <pre><code>8
+        17 1114.2337829671942
+        12 508.4958416468331
+        16 534.1319285143168
+        19 1318.540758136722
+        14 429.68040059057483
+        16 740.962178105143
+        18 1015.2554404694425
+        10 285.5274332392959
+      </code></pre>
+    <p>Expected output</p>
+    <pre><code>656640
+      </code></pre>
+    <p>Input</p>
+    <pre><code>10
+        12 415.87439964076873
+        16 677.9721431852045
+        15 552.1617255431586
+        20 1017.6519886367032
+        10 257.1309252497689
+        13 510.323715360094
+        15 479.63127526041376
+        10 378.9333879565738
+        19 1149.0329697621244
+        15 648.5212239205142
+      </code></pre>
+    <p>Expected output</p>
+    <pre><code>711360
+      </code></pre>
+    <div id="submissions"></div>
+    <h3 id="next-part"><a href="/problems/2/c">Go to part c (launches at 3:14pm)</a></h3>
+    <div id="footer"></div>
 </body>
 
 
+
+<script>
+  let time = $("#partc-delay");
+  time.countdown('2023/03/14  15:14:00', (event) => { // + " 01:00:00" is for timezone adjustment (makes it PST midnight!)
+    time.html(event.strftime(' -- %I:%M:%S'));
+    if (event.type == "finish") {
+      time.siblings("a").wrap("<span>")
+    }
+  });
+
+</script>
+
+<style>
+  li>span {
+    color: var(--secondary);
+  }
+
+  main>hgroup>h3>a {
+    color: var(--secondary);
+    cursor: not-allowed;
+    text-decoration: none;
+    pointer-events: none;
+  }
+</style>
 
 </html>
