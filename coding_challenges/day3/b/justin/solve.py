@@ -22,19 +22,21 @@ for _ in range(n):
 
 
 # now bfs
+best = 10**18
+visited = set()
 Q = [("Lisbon", 0)]
 while len(Q):
     city, time = Q.pop(0)
 
     if city == end:  # arrived
-        print(time)
-        exit(0)
+        best = min(best, time)
 
     # append neighbors
     for next in G[city]:
         name, wait, dur = next
-        if wait >= kMAX_WAIT:
+        if wait > kMAX_WAIT or name in visited:
             continue
-        Q.append((name, time + dur))
+        visited.add(name)
+        Q.append((name, time + dur + wait))
 
-print("no path")
+print(best)
