@@ -1,0 +1,30 @@
+A)
+
+Linked list
+
+Rome
+Paris
+3
+Rome Lisbon
+Miami Cophenhagen
+Lisbon Paris
+
+B)
+
+Flights are instant
+
+Rome
+Paris
+5
+Rome Lisbon 5:30
+Lisbon Paris 7:30
+
+C)
+
+Rome 
+Paris
+5
+Rome Lisbon 5:30 8:30
+
+
+
