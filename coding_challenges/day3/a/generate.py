@@ -3,14 +3,14 @@ import sys
 import random
 import re
 
-DEBUG = False
+DEBUG = True
 
 MIN_LINES = 4000
 MAX_LINES = 8000
 
 if DEBUG:
-    MIN_LINES = 10
-    MAX_LINES = 20
+    MIN_LINES = 40
+    MAX_LINES = 100
 
 sys.setrecursionlimit(max(1000, MAX_LINES + 100))
 
@@ -67,6 +67,3 @@ print(final_city)
 print(len(flights))
 for flight in flights:
     print(flight[0], flight[1])
-    
-
-
