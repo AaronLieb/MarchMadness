@@ -36,6 +36,8 @@ How `elusive` Monokai's travel plans are.
 ## Constraints
 `1000 <= N <= 10000`
 
+`elusive`-ness starts at 0. abs(elusive) <= 2^31.
+
 ## Examples
 
 Input
@@ -63,7 +65,7 @@ Barkhera Mekele
 
 Expected output
 ```
-<TODO>
+1
 ```
 
 Input
@@ -167,5 +169,5 @@ Till Reisbach
 
 Expected output
 ```
-<TODO>
+-29
 ```
