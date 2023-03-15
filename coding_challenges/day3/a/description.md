@@ -36,7 +36,7 @@ How `elusive` Monokai's travel plans are.
 ## Constraints
 `1000 <= N <= 10000`
 
-`elusive`-ness starts at 0. abs(elusive) <= 2^31.
+`elusive`-ness starts at 0 and `abs(elusive)` < 2^31.
 
 ## Examples
 
