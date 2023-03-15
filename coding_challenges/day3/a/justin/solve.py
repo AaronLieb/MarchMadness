@@ -6,10 +6,10 @@ start, end = lines[:2]
 # print(start, end)
 # print(lines)
 
-#create linkings
+# create linkings
 links = {}
 for l in lines[3:]:
-    u, v = l.split(' ')
+    u, v = l.split(" ")
     links[u] = v
 
 
@@ -20,9 +20,9 @@ for l in lines[3:]:
 elusive = 0
 curr = start
 while curr != end:
-    if len(end) > len(curr):
+    if len(links[curr]) > len(curr):
         elusive += 5
-    if len(end) < len(curr):
+    if len(links[curr]) < len(curr):
         elusive -= 2
     curr = links[curr]
 
