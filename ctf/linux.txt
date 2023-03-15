@@ -1,0 +1,6 @@
+set up ec2 server with public ssh 
+
+1) find flag in a bunch of dirs with junk files
+ - add a couple decoys to be funny
+2) find a a user on the machine that isn't you
+3) Find that users home directory and find the flag

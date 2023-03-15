@@ -3,7 +3,7 @@ import sys
 import random
 import re
 
-DEBUG = False
+DEBUG = True
 
 MAX_WAIT = 180
 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+      $("#submissions").load("/submissions.html")
+    });
+  </script>
+
+  <title>Day 3</title>
+</head>
+
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+<hgroup>
+<h1>Day 3 - Leaving Lisbon - Part A</h1>
+<h3 id="next-part"><a href="/problems/3/b">Go to part b</a></h3>
+</hgroup>
+<h1>Day 3 - Leaving Lisbon - Part A</h1>
+<p>Upset with the local politics, Monokai is trying to leave Lisbon! Monokai wants<br />
+to take a series of flights to evade the local authorities and arrive at a<br />
+final destination. Monokai is requesting your help in determining how <code>elusive</code><br />
+his travel plans are.</p>
+<p>Here’s how Monokai wants you to determine <code>elusive</code>-ness:</p>
+<ol>
+<li>
+<p>If a city you are traveling to has a longer name than the city you<br />
+are traveled from, increase <code>elusive</code>-ness by<br />
+<code>5</code>.</p>
+</li>
+<li>
+<p>If a city you are traveling to has a shorter name than the city you<br />
+are traveled from, decrease <code>elusive</code>-ness<br />
+by 2.</p>
+</li>
+<li>
+<p>If a city you are traveling to has a name of the same length as the city you<br />
+traveled from, do not modify <code>elusive</code>-ness.</p>
+</li>
+</ol>
+<p>Due to the aftermath of World War 7, there exists strict border laws. You may<br />
+only take direct flights from one city to another as per the available flights<br />
+(your input).</p>
+<h2>Input</h2>
+<h5><a href="/inputs/3/a/" target="_blank">Click here to get your input!</a></h5>
+<p>The first two lines contain Monokai’s <code>starting</code> and <code>ending</code> city. Of course,<br />
+Monokai starts in Lisbon!</p>
+<p>The next line of input is an integer <code>n</code> which represents the number of<br />
+available flights.</p>
+<p>Each of the <code>n</code> following lines contains two space-separated cities <code>u</code> and<br />
+<code>v</code>. You may travel from <code>u</code> to <code>v</code> but not from <code>v</code> to <code>u</code> directly.</p>
+<h2>Output</h2>
+<p>How <code>elusive</code> Monokai’s travel plans are.</p>
+<h2>Constraints</h2>
+<p><code>1000 &lt;= N &lt;= 10000</code></p>
+<p><code>elusive</code>-ness starts at 0 and <code>abs(elusive)</code> &lt; 2^31.</p>
+<h2>Examples</h2>
+<p>Input</p>
+<pre><code>Lisbon
+Fircrest
+16
+Fircrest Rufus
+Lejanias Ubud
+Mekele Tagum
+Rufus Villagrande
+Karori Lejanias
+Balabanovo Letschin
+Lisbon Villamalea
+Tagum Toporu
+Goodno Karori
+Letschin Goodno
+Karabaglar Fircrest
+Villamalea Karabaglar
+Toporu Balabanovo
+Sangamner Barkhera
+Villagrande Sangamner
+Barkhera Mekele
+</code></pre>
+<p>Expected output</p>
+<pre><code>1
+</code></pre>
+<p>Input</p>
+<pre><code>Lisbon
+Kunda
+92
+Millbrook Poboru
+Ghyvelde Chocianow
+Metten Kirchseeon
+Hext Papao
+Madeira Apensen
+Ottershaw Tiszafoldvar
+Jhanjharpur Maze
+Ivanava Whipholt
+Reisbach Alterhofen
+Freienbach Rossett
+Dolneni Beuvrages
+Fujikawaguchiko Qabil
+Azatan Ileana
+Jinja Madeira
+Kailashahar Glashutten
+Dunken Premariacco
+Dernekpazari Kailashahar
+Trilj Ghyvelde
+Bernissart Kuvandyk
+Tormac Pithora
+Irbin Tormac
+Zahl Nanning
+Tiszafoldvar Nazarovo
+Goldsmith Trilj
+Makkum Benfeld
+Bezdead Rayevskaya
+Dondaicha Dorpen
+Udaipura Kawit
+Harrietta Ivanava
+Piscu Weinbohla
+Glashutten Dondaicha
+Tokeland Poroshkovo
+Weinbohla Batetskiy
+Batetskiy Save
+Summerland Sevan
+Nazarovo Jhanjharpur
+Gavirate Slatino
+Tarakan Halaucesti
+Weilerbach Hext
+Papao Tarakan
+Chocianow Toshbuloq
+Kendrick Tokeland
+Dorpen Pelabuhanratu
+Tilaran Valko
+Qiaogu Sanza
+Alterhofen Azatan
+Salpazari Millbrook
+Sandersville Freienbach
+Rayevskaya Fujikawaguchiko
+Pithora Bernissart
+Lauterbach Bezdead
+Poysdorf Bordighera
+Nanning Kendrick
+Poboru Qiaogu
+Justus Ottershaw
+Qabil Summerland
+Valko Zahl
+Machynlleth Katherine
+Katherine Gavirate
+Baric Sandersville
+Urkut Sheksna
+Bordighera Hanzhong
+Poroshkovo Casarrubuelos
+Premariacco Urkut
+Spade Goldsmith
+Slatino Kerrick
+Maze Jinja
+Halaucesti Kunda
+Sheksna Piscu
+Save Lauterbach
+Kerrick Dolneni
+Casarrubuelos Dunken
+Sevan Salpazari
+Hanzhong Weilerbach
+Lisbon Machynlleth
+Kawit Makkum
+Apensen Irbin
+Rossett Poysdorf
+Sanza Butgenbach
+Toshbuloq Udaipura
+Butgenbach Westby
+Westby Canmore
+Kirchseeon Osie
+Pelabuhanratu Harrietta
+Whipholt Spade
+Beuvrages Baric
+Kunda Dernekpazari
+Kuvandyk Tilaran
+Osie Till
+Canmore Metten
+Benfeld Justus
+Till Reisbach
+</code></pre>
+<p>Expected output</p>
+<pre><code>-29
+</code></pre>
+
+<div id="submissions"></div>
+<h3 id="next-part"><a href="/problems/3/b">Go to part b</a></h3>
+<div id="footer"></div>
+</body>
+</html>

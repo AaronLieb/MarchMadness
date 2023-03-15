@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+crossorigin="anonymous">
+</script>
+<!-- Get same header and footer on all pages -->
+<script>
+$(function () {
+$("#header").load("/header.html");
+$("#footer").load("/footer.html");
+$("#submissions").load("/submissions.html")
+});
+</script>
+
+<script src="/utils/jquery.countdown.min.js"></script>
+
+<title>Day 3</title>
+</head>
+
+
+<body>
+<div id="header"></div>
+<main class="container">
+<hgroup>
+<h1>Day 3 - Leaving Lisbon Quickly - Part B</h1>
+<h4 id="next-part"><a href="/problems/3/a">Go back to part a</a></h4>
+</hgroup>
+<h1>Day 3 - Leaving Lisbon Faster - Part B</h1>
+<p>Monokai had a cloes call with the police and has decided to use a new strategy<br />
+to help him avoid potential capture.</p>
+<p>Monokai is again trying to leave Libson! Heres his new plan:</p>
+<ol>
+<li>He wants to get to his destination as fast as possible.</li>
+<li>He can’t be in a city for more than 3 hours</li>
+</ol>
+<p>Monokai has collected a list of all upcoming flights.</p>
+<p>Hopefully this new strategy well will keep the authorities clueless!</p>
+<h2>Input</h2>
+<h5><a href="/inputs/3/b/" target="_blank">Click here to get your input!</a></h5>
+<p>The first two lines contain Monokai’s <code>starting</code> and <code>ending</code> city. Of course,<br />
+Monokai starts in Lisbon!</p>
+<p>The next line of input is an integer <code>n</code> which represents the number of<br />
+available flights.</p>
+<p>Each of the <code>n</code> following lines contains two space-separated cities <code>u</code> and<br />
+<code>v</code> and two <code>hours:minutes</code>/<code>hh:mm</code> times <code>w</code> and <code>d</code>.</p>
+<p>Monokai can take a flight from <code>u</code> to <code>v</code> and the duration of the flight will be <code>d</code>.<br />
+The time he needs to wait beofre the flight takes off is <code>w</code>. (This means that the total time would be <code>d</code> + <code>w</code>)</p>
+<p><code>d</code> and <code>w</code> are not absolute times, but relative times (durations).</p>
+<h2>Output</h2>
+<p>Given Monokai took the most optimal flights, what is the time (in minutes) that<br />
+the entire journey would take for him to get from Lisbon to his destination?</p>
+<p>However, be careful! Monokai can not stay in one city for more than 3 hours.</p>
+<h2>Constraints</h2>
+<p><code>25 &lt;= N &lt;= 100</code></p>
+<h2>Examples</h2>
+<p>Input</p>
+<pre><code>Lisbon
+Douane
+25
+Douane Thonex 08:43 02:15
+Chokwe Douane 07:30 01:15
+Thonex Omarska 00:40 02:33
+Lisbon Douane 06:59 00:17
+Chokwe Omarska 00:37 02:35
+Douane Chokwe 07:44 04:01
+Thonex Lisbon 02:56 04:30
+Chokwe Douane 00:04 04:06
+Lisbon Thonex 03:57 00:19
+Chokwe Thonex 00:02 00:43
+Chokwe Omarska 02:47 00:10
+Douane Chokwe 03:16 04:37
+Lisbon Thonex 06:24 04:30
+Chokwe Thonex 00:36 03:32
+Omarska Douane 02:10 03:57
+Omarska Chokwe 02:14 01:05
+Lisbon Chokwe 01:10 02:05
+Omarska Thonex 09:22 03:05
+Douane Lisbon 00:26 04:45
+Thonex Lisbon 02:27 01:49
+Chokwe Lisbon 09:18 00:54
+Thonex Chokwe 00:18 00:53
+Douane Omarska 03:02 00:11
+Omarska Thonex 01:50 02:31
+Chokwe Omarska 02:38 01:36
+</code></pre>
+<p>Expected output</p>
+<pre><code>445
+</code></pre>
+<p>Input</p>
+<pre><code>Lisbon
+Vares
+25
+Pirdop Kosciusko 09:53 00:32
+Kosciusko Modale 10:00 02:54
+Pirdop Kosciusko 06:49 00:21
+Lisbon Vares 08:28 04:18
+Pirdop Vares 02:40 01:04
+Vares Pirdop 02:24 02:48
+Kosciusko Vares 02:24 04:49
+Lisbon Vares 01:56 00:54
+Kosciusko Vares 06:23 05:00
+Pirdop Kosciusko 00:44 01:30
+Lisbon Kosciusko 09:17 04:11
+Modale Vares 03:34 03:49
+Modale Vares 00:24 00:45
+Vares Modale 06:37 02:23
+Lisbon Kosciusko 06:57 02:03
+Pirdop Vares 01:45 02:41
+Pirdop Lisbon 09:08 00:54
+Vares Kosciusko 06:14 02:50
+Lisbon Modale 01:46 03:56
+Modale Kosciusko 05:42 01:25
+Pirdop Lisbon 01:32 04:19
+Vares Modale 01:50 00:31
+Modale Kosciusko 05:46 00:51
+Kosciusko Modale 05:53 03:45
+Pirdop Lisbon 05:11 01:05
+</code></pre>
+<p>Expected output</p>
+<pre><code>170
+</code></pre>
+<div id="submissions"></div>
+<h3 id="next-part"><a href="/problems/3/a">Go back to to part a</a></h3>
+<div id="footer"></div>
+</body>
+
+
+<style>
+li>span {
+color: var(--secondary);
+}
+
+main>hgroup>h3>a {
+color: var(--secondary);
+cursor: not-allowed;
+text-decoration: none;
+pointer-events: none;
+}
+</style>
+
+</html>
