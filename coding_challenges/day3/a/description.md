@@ -7,10 +7,12 @@ his travel plans are.
 
 Here's how Monokai wants you to determine `elusive`-ness:
 
-1) If a city you are traveling to has a longer name, increase `elusive`-ness by
+1) If a city you are traveling to has a longer name than the city you
+are traveled from, increase `elusive`-ness by
 `5`.
 
-2) If a city you are traveling to has a shorter name, decrease `elusive`-ness
+2) If a city you are traveling to has a shorter name than the city you
+are traveled from, decrease `elusive`-ness
 by 2.
 
 3) If a city you are traveling to has a name of the same length as the city you
