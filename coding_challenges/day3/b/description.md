@@ -1,16 +1,16 @@
 # Day 3 - Leaving Lisbon Faster - Part B
 
-Monokai had a cloes call with the police and has decided to use a new strategy
+Monokai had a close call with the police and has decided to use a new strategy
 to help him avoid potential capture.
 
 Monokai is again trying to leave Libson! Heres his new plan:
 
-1) He wants to get to his destination as fast as possible. 
+1) He wants to get to his destination as fast as possible.
 2) He can't be in a city for more than 3 hours
 
 Monokai has collected a list of all upcoming flights.
 
-Hopefully this new strategy well will keep the authorities clueless!
+Hopefully this new strategy will keep the authorities clueless!
 
 ## Input
 The first two lines contain Monokai's `starting` and `ending` city. Of course,
@@ -20,7 +20,7 @@ The next line of input is an integer `n` which represents the number of
 available flights.
 
 Each of the `n` following lines contains two space-separated cities `u` and
-`v` and two `hours:minutes`/`hh:mm` times `w` and `d`. 
+`v` and two `hours:minutes`/`hh:mm` times `w` and `d`.
 
 Monokai can take a flight from `u` to `v` and the duration of the flight will be `d`.
 The time he needs to wait beofre the flight takes off is `w`. (This means that the total time would be `d` + `w`)
