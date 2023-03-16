@@ -1,0 +1,106 @@
+challs:
+    sockets:
+        McDonalds:
+            desc:
+        Sockets allow you to talk to other programs over a network! Hosts have IP addresses and ports. You can think of the IP address as the location of the McDonalds, and the ports as the register you're ordering at. Each McDonalds has multiple registers that let's you check out food and order stuff. Similarly, each application running on a host can bind to its own port. The IP 137.151.29.178 on port 1234 has the flag for this challenge. Use a tool like <code>nc</code> to connect!
+                137.151.29.178 1234
+            flag:
+                flag{w0uld_y0u_l1ke_fr13s_w1th_th4t}
+        Simple Arithmetic:
+            desc:
+                You can write code to interface with sockets too!
+                "https://www.geeksforgeeks.org/socket-programming-python/"
+                These can be useful for doing complex, time sensitive tasks with sockets. In a problem like this, the goal will be to connect to the socket, read the data, do something, and send it back!
+		In this case, this socket spits two numbers at you, and wants you to add them really fast. Probably too fast to do by hand- you'll need to write code!
+
+                137.151.29.178 1235
+            flag:
+                flag{n3tw0rk_c4lcul4t0r_c0m1ng_s00n}
+        Not-so simple arithmetic:
+            desc:
+                what if you did more math but faster and more and faster and more again
+
+                137.151.29.178 1236
+            flag:
+                flag{w0w_u_d1d_1t_4g41n}
+        schizo:
+            desc:
+                i like talking to myself. a lot
+
+                137.151.29.178 1237
+            flag:
+                flag{ok4y_i_th1nk_i_g3t_s0ck3ts}
+
+DONE
+    rev:
+        askme:
+            desc:
+		What do you mean characters have numbers?
+		[file askme.py]
+            flag:
+                flag{4sc11}
+        American Ninja Warrior:
+            desc:
+		American Ninja Warrior!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                [file anw.py]
+                137.151.29.178 5591
+            flag:
+                flag{4m3r1c4n_n1nj4_w4rr10r_h4s_l3v3ls_r1ght}
+        connect4:
+            desc:
+		I always lose at connect4, even when I play against myself!
+                [file connect4.py]
+                137.151.29.178 5592
+            flag:
+                flag{444444444444444465idkwhy4444444}
+        recursion:
+            desc:
+		[file rec.py]
+                recursion
+                 recursion
+                  recursion
+                   recursion
+            flag:
+                flag{i_h4t3_r3curs10n}
+        babyvm:
+            desc:
+		[babyvm.py]
+                what makes it virtual anyways
+                137.151.29.178 5595
+            flag:
+                flag{w0w_s0_v1rtu4l}
+DONEJk
+    crypto:
+        XOR:
+            desc:
+                [51, 57, 52, 50, 46, 45, 101, 39, 10, 55, 101, 33, 61, 10, 34, 97, 44, 38, 40]
+                the above bytes were XORd with 85 to produce the flag!
+	    flag:
+                flag{x0r_b0th_w4ys}
+        XOR again:
+	    desc:
+		[120, 114, 127, 121, 101, 47, 106, 65, 109, 106, 42, 108, 106, 109, 65, 105, 47, 106, 118, 65, 120, 114, 42, 121, 99]
+                the above bytes were XORd with... shoot! We lost the key! You didn't need it anyways.
+            flag:
+                flag{1t_st4rts_w1th_fl4g}
+        XOR again but again:
+	    desc:
+	        [102, 10, 13, 6, 28, 74, 69, 43, 108, 93, 13, 17, 11, 9, 4, 7, 44, 110, 69, 7, 64, 95, 10, 27]
+		each character in the original was encrypted with the next character in the original. the first character remains the same. read that again slowly, and get the flag!
+	    flag:
+                flag{1t_3ncrypts_1ts3lf}
+	based64:
+	    desc:
+		ZmxhZ3tqdXN0XzY0X2gzcjN9=
+		based (64 times)
+	    flag:
+		flag{just_64_h3r3}
+	46desab:
+	    desc:
+		mZOemISdy5yUiMuNm4ygiM+Igv==
+		based but the alphabet is backwards (64 times)
+		"Alphabet:"
+		/+9876543210zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+		You might have to do it by hand (by program)
+	    flag:
+		flag{b4ckw4rds_w0w}

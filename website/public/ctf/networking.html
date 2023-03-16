@@ -20,7 +20,7 @@
 
   <script src="../utils/jquery.countdown.min.js"></script>
 
-  <title>Rev</title>
+  <title>Networking</title>
 </head>
 
 <body>
@@ -28,8 +28,8 @@
   <main class="container">
     <a href="/ctf/home">Back to CTF home</a>
     <hgroup>
-      <h2>Rev <mark id='solved-ratio'><span id='solved-num'>0</span> / <span id='total'>5</span></mark> </h2>
-      <p>esrever ni si siht esuaceb ynnuf s'tI</p>
+      <h2>Networking <mark id='solved-ratio'><span id='solved-num'>0</span> / <span id='total'>4</span></mark> </h2>
+      <p>Solve these network-style problems!</p>
     </hgroup>
     <label id="hide-solved" for="Hide Solved">
       <input type="checkbox" name="Hide Solved" id="hide-solved-checkbox">
@@ -37,55 +37,19 @@
     </label>
     <article class='grid'>
       <hgroup>
-        <h2>askme</h2>
-        <p> What do you mean characters have numbers?</p>
-        <a href="/rev/askme.py">askme.py</a>
-      </hgroup>
-      <div>
-        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
-        <button class="bttn">Submit</button>
-      </div>
-    </article>
-    <article class='grid'>
-      <hgroup>
-        <h2>American Ninja Warrior</h2>
-        <p> American Ninja Warrior!!!1!!1!2</p>
-        <code>137.151.29.178 5591</code>
-      </hgroup>
-      <div>
-        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
-        <button class="bttn">Submit</button>
-      </div>
-    </article>
-    <article class='grid'>
-      <hgroup>
-        <h2>connect4</h2>
-        <p> I always lose at connect4, even when I play against myself!
-        </p>
-        <code>137.151.29.178 5592</code>
-        <br><br>
-        <a href="/rev/connect4.py">connect4.py</a>
-      </hgroup>
-      <div>
-        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
-        <button class="bttn">Submit</button>
-      </div>
-    </article>
-    <article class='grid'>
-      <hgroup>
-        <h2>recursion</h2>
+        <h2>McDonalds</h2>
         <p>
-          recursion
-        <p style="opacity: .75">recursion</p>
-        <p style="opacity: .45">recursion</p>
-        <p style="opacity: .25">recursion</p>
-        <p style="opacity: .15">recursion</p>
-        <p style="opacity: .05">recursion</p>
+          Sockets allow you to talk to other programs over a network! Hosts have IP addresses and ports. You can think
+          of
+          the IP address as the location of the McDonalds, and the ports as the register you're ordering at. Each
+          McDonalds has multiple registers that let's you check out food and order stuff. Similarly, each application
+          running on a host can bind to its own port. The IP 137.151.29.178 on port 1234 has the flag for this
+          challenge.
+          Use a tool like <code>nc</code> to connect!
         </p>
 
-        <code>137.151.29.178 5595</code>
-        <br><br>
-        <a href="/rev/rec.py">rec.py</a>
+        <code>137.151.29.178 1234</code>
+        </p>
       </hgroup>
       <div>
         <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
@@ -94,21 +58,48 @@
     </article>
     <article class='grid'>
       <hgroup>
-        <h2>babyvm</h2>
+        <h2>Simple Arithmetic</h2>
         <p>
-          What makes it virtual anyways
+          You can write code to interface with sockets too!
+          "https://www.geeksforgeeks.org/socket-programming-python/"
+          These can be useful for doing complex, time sensitive tasks with sockets. In a problem like this, the goal
+          will be to connect to the socket, read the data, do something, and send it back!
+          In this case, this socket spits two numbers at you, and wants you to add them really fast. Probably too fast
+          to do by hand- you'll need to write code!
+          <br><br>
+
+          <code>137.151.29.178 1235</code>
         </p>
-        <code>137.151.29.178 5595</code>
-        <br>
-        <br>
-        <a href="/rev/babyvm.py">babyvm.py</a>
+
       </hgroup>
       <div>
         <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
         <button class="bttn">Submit</button>
       </div>
     </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>Not-so Simple Arithmetic</h2>
+        <p>What if you did more math but faster and more and faster and more again</p>
+        <code>137.151.29.178 1236</code>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>Schizo</h2>
+        <p> i like talking to myself. a lot</p>
 
+        <code>137.151.29.178 1237</code>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
 
   </main>
   <div id="footer"></div>
@@ -136,15 +127,6 @@
     background-color: #d81b60;
     border: 2px solid #df1b60;
     opacity: 0.95;
-  }
-
-  hgroup>a::before {
-    content: "⮚    ";
-  }
-
-
-  hgroup>a {
-    color: var(--primary);
   }
 </style>
 

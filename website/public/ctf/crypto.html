@@ -20,7 +20,7 @@
 
   <script src="../utils/jquery.countdown.min.js"></script>
 
-  <title>Rev</title>
+  <title>Crypto</title>
 </head>
 
 <body>
@@ -28,8 +28,8 @@
   <main class="container">
     <a href="/ctf/home">Back to CTF home</a>
     <hgroup>
-      <h2>Rev <mark id='solved-ratio'><span id='solved-num'>0</span> / <span id='total'>5</span></mark> </h2>
-      <p>esrever ni si siht esuaceb ynnuf s'tI</p>
+      <h2>Crypto <mark id='solved-ratio'><span id='solved-num'>0</span> / <span id='total'>5</span></mark> </h2>
+      <p>Now with <mark>100%</mark> more <em>security!</em></p>
     </hgroup>
     <label id="hide-solved" for="Hide Solved">
       <input type="checkbox" name="Hide Solved" id="hide-solved-checkbox">
@@ -37,34 +37,24 @@
     </label>
     <article class='grid'>
       <hgroup>
-        <h2>askme</h2>
-        <p> What do you mean characters have numbers?</p>
-        <a href="/rev/askme.py">askme.py</a>
-      </hgroup>
-      <div>
-        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
-        <button class="bttn">Submit</button>
-      </div>
-    </article>
-    <article class='grid'>
-      <hgroup>
-        <h2>American Ninja Warrior</h2>
-        <p> American Ninja Warrior!!!1!!1!2</p>
-        <code>137.151.29.178 5591</code>
-      </hgroup>
-      <div>
-        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
-        <button class="bttn">Submit</button>
-      </div>
-    </article>
-    <article class='grid'>
-      <hgroup>
-        <h2>connect4</h2>
-        <p> I always lose at connect4, even when I play against myself!
+        <h2>XOR</h2>
+        <p> <code>[51, 57, 52, 50, 46, 45, 101, 39, 10, 55, 101, 33, 61, 10, 34, 97, 44, 38, 40]</code>
+          The above bytes were XORd with 85 to produce the flag!
         </p>
-        <code>137.151.29.178 5592</code>
-        <br><br>
-        <a href="/rev/connect4.py">connect4.py</a>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article>
+      <hgroup>
+        <h2>XOR Again</h2>
+        <p> <code>[120, 114, 127, 121, 101, 47, 106, 65, 109, 106, 42, 108, 106, 109, 65, 105, 47, 106, 118, 65, 120,
+            114, 42,
+            121, 99]</code>
+          The above bytes were XORd with... shoot! We lost the key! You didn't need it anyways.
+        </p>
       </hgroup>
       <div>
         <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
@@ -73,19 +63,12 @@
     </article>
     <article class='grid'>
       <hgroup>
-        <h2>recursion</h2>
-        <p>
-          recursion
-        <p style="opacity: .75">recursion</p>
-        <p style="opacity: .45">recursion</p>
-        <p style="opacity: .25">recursion</p>
-        <p style="opacity: .15">recursion</p>
-        <p style="opacity: .05">recursion</p>
+        <h2>XOR again but again</h2>
+        <p> <code>[102, 10, 13, 6, 28, 74, 69, 43, 108, 93, 13, 17, 11, 9, 4, 7, 44, 110, 69, 7, 64, 95, 10, 27]</code>
+          <br>
+          Each character in the original was encrypted with the next character in the original. the first character
+          remains the same. read that again slowly, and get the flag!
         </p>
-
-        <code>137.151.29.178 5595</code>
-        <br><br>
-        <a href="/rev/rec.py">rec.py</a>
       </hgroup>
       <div>
         <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
@@ -94,14 +77,25 @@
     </article>
     <article class='grid'>
       <hgroup>
-        <h2>babyvm</h2>
-        <p>
-          What makes it virtual anyways
+        <h2>based64</h2>
+        <p> ZmxhZ3tqdXN0XzY0X2gzcjN9=
+          based (64 times)
         </p>
-        <code>137.151.29.178 5595</code>
-        <br>
-        <br>
-        <a href="/rev/babyvm.py">babyvm.py</a>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article>
+      <hgroup>
+        <h2>46desab</h2>
+        <p> <code>mZOemISdy5yUiMuNm4ygiM+Igv==</code>
+          based but the alphabet is backwards (64 times)
+          <br><br>"Alphabet:"
+          <code>/+9876543210zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA</code>
+          You might have to do it by hand (by program)
+        </p>
       </hgroup>
       <div>
         <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">

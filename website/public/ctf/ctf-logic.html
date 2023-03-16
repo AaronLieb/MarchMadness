@@ -24,7 +24,7 @@
   const hide_solves_checkbox = $("#hide-solved-checkbox");
   let loc = window.location.href;
   let last_part_of_url = loc.slice(loc.lastIndexOf('/') + 1,)
-  const ON_FAIL_TIMEOUT = 2500;
+  const ON_FAIL_TIMEOUT = 1000 * 10;
   const CATEGORY = last_part_of_url;
   let solved = 0;
 
@@ -38,12 +38,14 @@
   }
 
   const setUpInputs = () => {
+    $("#hide-solved-checkbox").hide(); // we will re-enable once they have some solves
     $("#hide-solved").hide(); // we will re-enable once they have some solves
+    let psolves = 0;
     $.each(inputs, (u, v) => {
       $(v).on('input', () => {
         // reset associated button
         const bttn = $(buttons[u]);
-        bttn.removeAttr('disabled', true).removeClass('failed').text("Submit");
+        bttn.removeClass('failed').text("Submit");
       });
       // has already been solved?
       const cookie = getCookie(CATEGORY + '-' + u);
@@ -53,13 +55,17 @@
         $(articles[u]).addClass('solved');
         const chall_name = $(articles[u]).children()[0];
         $(chall_name).css({'text-decoration': 'line-through'});
-        solved += 1;
-        if (solved == 1) $("#hide-solved").fadeIn(200); // only == 1 so we dont try to re-fade-in (only first solve required to have this input)
+        psolves += 1;
+        if (solved == 1) {
+          $("#hide-solved-checkbox").fadeIn(200); // only == 1 so we dont try to re-fade-in (only first solve required to have this input)
+          $("#hide-solved").fadeIn(200); // we will re-enable once they have some solves
+        }
         // if user has prior preference about hiding solves, load them in
         const hide_solves = getCookie(`${CATEGORY}-hide-solves`);
         hideSolved(hide_solves == 'true');
       }
       // solved ratio
+      solved = psolves;
       $("#solved-num").text(solved);
     });
   }
@@ -88,6 +94,9 @@
       setUpInputs();
     } else if (result === false) {
       $(v).addClass('failed').attr('disabled', 'true').text("Fail ❌");
+      setTimeout(() => {
+        $(v).removeAttr('disabled', true);
+      }, ON_FAIL_TIMEOUT)
     }
   }
 
@@ -103,6 +112,17 @@
       }, 25);
       return;
     }
+
+    let url = `https://api.jstitt.dev/acmmm/sheet/check_solved_flags?team_name=${team}&category=${CATEGORY}`;
+    fetch(url, {method: 'GET'}).then(resp => resp.json()).then(data => {
+      data.data.forEach((index) => {
+        const old_cookie = getCookie(`${CATEGORY}-${index}`)
+        if (old_cookie == '') {
+          document.cookie = `${CATEGORY}-${index}=<your team solved this already>`
+        }
+      });
+      setUpInputs();
+    });
   }
 
   const hideSolved = (hide_solved) => {
