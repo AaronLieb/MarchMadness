@@ -24,7 +24,16 @@
 <body>
   <div id="header"></div>
   <main class="container" style="margin-top: -10vh;">
-    <h1>Admin Console</h1>
+    <hgroup>
+      <h1>Admin Button</h1>
+      <p>You'll never click my button!</p>
+    </hgroup>
+    <article>
+      <form method="POST">
+        <input style="visibility: hidden;" name="msg" value="gimme da flag!">
+        <button type="submit" disabled>Try and click me!!! YOU CANT</button>
+      </form>
+    </article>
   </main>
   <div id="footer"></div>
 </body>
