@@ -103,7 +103,7 @@
   const checkPriorSubmissions = () => {
     // TODO: ask backend for prior ctf submissions for 'rev' and update solved
     // TODO: call setup inputs AGAIN after we fetch submissions
-    if (team === undefined) {
+    if (team === undefined || team == '') {
       console.log("Can't load submissions if you're not on a team")
       $("body").css({'filter': 'blur(25px)'})
       setTimeout(() => {
