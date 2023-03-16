@@ -36,7 +36,7 @@ app.get('/admin/panel/motivate/:id', async(req, res) => {
 })
 
 app.get('/admin/panel/cookie_jar', async(req, res) => {
-if (req.cookies.allowed_to_enter == true) {
+  if (req.cookies.allowed_to_enter == "true") {
     res.send("flag{Th3_l1ght_th4t_burn5_tw1c3_4s_br1ght_burns_h4lf_4s_l0ng}")
     return
   }
