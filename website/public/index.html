@@ -203,9 +203,10 @@
         }
       })
       .then(() => {
-        deleteCookie('team');
-        deleteCookie('name');
-        deleteCookie('token');
+        // deleteCookie('team');
+        // deleteCookie('name');
+        // deleteCookie('token');
+        deleteAllCookies();
         window.location.reload();
       })
   }

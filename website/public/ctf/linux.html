@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+  <script src='/utils/cookie.js'></script>
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+      $("#ctf-logic").load("/ctf/ctf-logic.html");
+    });
+  </script>
+
+  <script src="../utils/jquery.countdown.min.js"></script>
+
+  <title>Linux</title>
+</head>
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+    <a href="/ctf/home">Back to CTF home</a>
+    <hgroup>
+      <h2>Linux <mark id='solved-ratio'><span id='solved-num'>0</span> / <span id='total'>10</span></mark> </h2>
+      <p>I use <mark>Arch</mark> btw.</p>
+    </hgroup>
+    <label id="hide-solved" for="Hide Solved">
+      <input type="checkbox" name="Hide Solved" id="hide-solved-checkbox">
+      Hide Solved
+    </label>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux0</h2>
+        <p>What is the flag given to you when you log in via ssh?</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux1</h2>
+        <p>What argument would you use with <code>ls</code> to see the permissions of files?
+          Wrap your answer in flag{}. For example, if your answer is <code>ls -hello</code>, your
+          flag would be flag{hello}
+        </p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+
+    <article class='grid'>
+      <hgroup>
+        <h2>linux2</h2>
+        <p>What version of ubunutu is running on the server? look up the canonical name for the version number.
+          Format: flag{Name Here}
+        </p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux3</h2>
+        <p>
+          Find flag in a bunch of dirs with junk files
+        </p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux4</h2>
+        <p>Find a a user on the machine that isn't you. Wrap it in flag{}</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux5</h2>
+        <p>Find that users home directory and find the flag</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux6</h2>
+        <p>Commands you can run as root (run and get flag)</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux6</h2>
+        <p>find the readable folder in /my_cool_programs</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux7</h2>
+        <p>Find a process running that contains a flag.</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux8</h2>
+        <p>7What TCP port is that process bound to? Wrap it in flag</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+    <article class='grid'>
+      <hgroup>
+        <h2>linux9</h2>
+        <p>Send a post request to that web server that takes a file to read and send back</p>
+      </hgroup>
+      <div>
+        <input class="inp" type="text" placeholder="flag{thi$_!s_4_fl4g}">
+        <button class="bttn">Submit</button>
+      </div>
+    </article>
+
+
+  </main>
+  <div id="footer"></div>
+  <div id="ctf-logic"></div>
+</body>
+
+
+<style>
+  .grid {
+    margin-top: 2.2rem;
+  }
+
+  .solved {
+    opacity: 0.5;
+    border: 3px dotted var(--secondary);
+  }
+
+  .passed {
+    background-color: #7cb342;
+    border: 2px solid #7cbf42;
+    opacity: 0.92;
+  }
+
+  .failed {
+    background-color: #d81b60;
+    border: 2px solid #df1b60;
+    opacity: 0.95;
+  }
+
+  hgroup>a::before {
+    content: "⮚    ";
+  }
+
+
+  hgroup>a {
+    color: var(--primary);
+  }
+</style>
+
+</html>
