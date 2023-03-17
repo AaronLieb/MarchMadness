@@ -12,9 +12,9 @@ There is a wrinkle, though. The IRS stores bank accounts using a `g-Nacci` notat
 
 `g-Nacci`:
 
-`g-Nacci[i]` = `g-Nacci[i-1] + p-Nacci[i-2] + p-Nacci[i-3] + ... + p-Nacci[i-p]`
+`g-Nacci[i]` = `g-Nacci[i-1] + g-Nacci[i-2] + g-Nacci[i-3] + ... + g-Nacci[i-g]`
 
-The first p-Nacci number is always `0` which is then followed by `g-1` `1`'s.
+The first `g-Nacci` number is always `0` which is then followed by `g-1` `1`'s.
 
 ** For example: **
 *for `g` = 3*
@@ -35,11 +35,11 @@ result for a given index.
 
 Below are some examples the IRS gave you to help calibrate your work:
 
-`2-Nacci[10] = 37`
+`2-Nacci[10] = 34`
 
-`6-Nacci[201] = 1840791`
+`6-Nacci[201] = 5006161`
 
-`7-Nacci[1999] = 2807708`
+`7-Nacci[1999] = 8039002`
 
 The final output of a `g-Nacci` sequence at a given index `i` is known as a
 `routing number`, as per the IRS's manuals, of course.
