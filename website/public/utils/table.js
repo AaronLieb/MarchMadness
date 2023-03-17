@@ -59,8 +59,15 @@ const jsonTableToDOM = (raw) => {
     let name = $("<td>").text(team);
     let tr = $("<tr>").append(name);
     // add all scores from row
-    $.each(data[team], (_, score) => {
-      score = $("<td>").text(score);
+    $.each(data[team], (_idx, score) => {
+      // console.log(score, score > 1337, _)
+      if (score > 1337 && _idx == 4) {
+        console.log('here')
+        score = $("<td>").text(score + '*').css({"background-color": "#efe4c1", "opacity": "0.8", "border-radius": "10%"})
+      } else {
+        score = $("<td>").text(score);
+      }
+
       tr.append(score);
     });
 
