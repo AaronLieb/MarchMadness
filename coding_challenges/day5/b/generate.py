@@ -17,9 +17,9 @@ write the account number who made the most taxable income (primes are not TAXED!
 # (how much taxable income did 12451231 make)
 # (keep numbers below 2^62)
 '''
-DEBUG = True
+DEBUG = False
 if DEBUG:
-    print(f"<<DEBUG MODE ON>>", flush=True)
+    print(f"<<DEBUG MODE ON>>")
 
 N, K, naccis, solved_naccis, chosen, primes, primes_lookup, incomes, calculated_naccis = [None] * 9
 primes = sieve()
@@ -27,15 +27,22 @@ primes_lookup = set(primes)
 
 def getMeta():
     global N, K, naccis, solved_naccis, chosen, primes, primes_lookup, incomes, calculated_naccis
-    N = 4 if DEBUG else randint(2000, 3333)
-    K = 10 if DEBUG else randint(11_000, 20_000)
+    N = 8 if DEBUG else randint(2000, 3333)
+    K = 40 if DEBUG else randint(11_000, 20_000)
     naccis = list(set([getNacciPair() for _ in range(N)])) # set->list cast to remove dupes
     N = len(naccis) # reset N to the number after removing dupes
     assert len(naccis), 'empty naccis!'
     solved_naccis = [kNacci(x[0], x[1]) for x in naccis]
+    assert len(solved_naccis) == len(naccis), 'Uh-oh, solved naccis not same length as generated naccis'
+    solved_naccis_no_dupes = set(solved_naccis)
+    # print(solved_naccis, '\n', solved_naccis_no_dupes)
+    assert len(solved_naccis) == len(solved_naccis_no_dupes), 'Uh-oh, multiple nacci pairs hit same routing number'
     chosen = set()
     incomes = defaultdict(lambda: int()) # not used for generator, this is for solver
     calculated_naccis = {v: ''.join([str(x) for x in k]) for k, v in zip(naccis, solved_naccis)}
+    # print('naccis', naccis)
+    # print('solved_naccis', solved_naccis)
+    # print('calculated_naccis', calculated_naccis)
 
 # print(naccis)
 # print(solved_naccis)
@@ -88,5 +95,5 @@ def generateOne():
     # print(calculated_naccis[highest[0]], file=sys.stderr)
 
 if __name__ == '__main__':
-    print(generateOne()[0], end = '')
-    print(generateOne()[1], end = '')
+    ans = generateOne()
+    print(ans[0], '\n', ans[1], sep='')
