@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"> </script>
+
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+      $("#submissions").load("/submissions.html")
+    });
+  </script>
+
+  <title>Day 5</title>
+</head>
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+<hgroup>
+<h1>Day 5 - Taxable Income - Part B</h1>
+<p id="next-part"><a href="/problems/5/a">Go back to to part a</a></p>
+</hgroup>
+<p>The Irrational Relativity Sanction (IRS) wants to calculate the taxable income<br />
+for multiple suspicious bank accounts. They have tasked your team, the best in<br />
+the Relativity Sanction-ing business, to help find the bank account that made<br />
+the most taxable income.</p>
+<p>However, due to the Synchronized Integer Enumeration and Validation Exclamation (S.I.E.V.E),<br />
+the Irrational Relativity Sanction can only (legally) consider non-prime numbers as taxable income.</p>
+<p>There is a wrinkle, though. The IRS stores bank accounts using a <code>g-Nacci</code> notation described below.</p>
+<p><code>g-Nacci</code>:</p>
+<p><code>g-Nacci[i]</code> = <code>g-Nacci[i-1] + g-Nacci[i-2] + g-Nacci[i-3] + ... + g-Nacci[i-g]</code></p>
+<p>The first <code>g-Nacci</code> number is always <code>0</code> which is then followed by <code>g-1</code> <code>1</code>’s.</p>
+<p>** For example: **<br />
+<em>for <code>g</code> = 3</em></p>
+<p>Our starting sequence for <code>3-Nacci</code> is <code>[0, 1, 1]</code></p>
+<p>Calculating the next <code>3-Nacci</code> number requires finding the sum of the previous <code>3</code>.</p>
+<p>i.e: <code>0 + 1 + 1 = 2</code>. Therefore <code>3-Nacci[4] = 2</code>.</p>
+<p>Moreover, <code>3-Nacci[5] = 4</code>, <code>3-Nacci[6] = 7</code> … <code>3-Nacci[12] = 274</code>.</p>
+<p>There’s more. Due to government budget cuts, the IRS also has an extremely<br />
+primitive computational network called the Unrelenting Homogenous-Oxidation Hole (Uh-Oh).<br />
+Due to this, the IRS requests that when calculating <code>g-Nacci</code> numbers you should<br />
+also modulo each of the <code>g</code> previous values by <code>10^7+7</code> as well as the final<br />
+result for a given index.</p>
+<p>Below are some examples the IRS gave you to help calibrate your work:</p>
+<p><code>2-Nacci[10] = 34</code></p>
+<p><code>6-Nacci[201] = 5006161</code></p>
+<p><code>7-Nacci[1999] = 8039002</code></p>
+<p>The final output of a <code>g-Nacci</code> sequence at a given index <code>i</code> is known as a<br />
+<code>routing number</code>, as per the IRS’s manuals, of course.</p>
+<h2>Input</h2>
+<h5><a href="/inputs/5/b/" target="_blank">Click here to get your input!</a></h5>
+<p>The first line contains two integers <code>n</code> and <code>k</code></p>
+<p><code>n</code> is the number of bank accounts</p>
+<p><code>k</code> is the number of transactions from one <code>routing number</code> to another</p>
+<p>Each of the next <code>n</code> lines contains a bank account. Each bank account consists<br />
+of two numbers, the first being the base <code>g</code> of the <code>g-Nacci</code> sequence. The<br />
+next number is the index within that sequence. For example <code>7 1999</code> should yield<br />
+a final <code>routing number</code> of <code>8039002</code></p>
+<p>Each of the next <code>k</code> lines contains a transaction. A transaction contains 3<br />
+numbers. The first being the <code>routing number</code> from which money is exiting and<br />
+the second being the <code>routing number</code> to which money is entering. The final<br />
+number, which is surrounded by parenthesis and preceded by a <code>$</code>, is the amount<br />
+of money transfered.</p>
+<h2>Output</h2>
+<p>The original bank account whose <code>routing number</code> received the most taxable income.</p>
+<p>Concatenate the bank account base <code>p</code> with its index <code>i</code> with no spaces. e.g: <code>7 1999</code> -&gt; <code>71999</code></p>
+<p><em>Note: the transactions show transfers between routing numbers but your output<br />
+should be the original bank account associated with the routing number, but not<br />
+the routing number itself</em></p>
+<h2>Constraints</h2>
+<p><code>2000 &lt;= n &lt;= 4000</code></p>
+<p><code>10000 &lt;= k &lt;= 20000</code></p>
+<p><code>2 &lt;= p &lt;= 9</code></p>
+<p><code>100 &lt;= i &lt;= 10000</code></p>
+<p><code>MOD = 10^7+7</code></p>
+<p><code>4 &lt;= transaction amount &lt; MOD</code></p>
+<h2>Examples</h2>
+<p>Input</p>
+<pre><code>3 6
+2 6584
+9 1802
+5 1807
+8421011 -&gt; 2801755 ($2716163)
+9903020 -&gt; 2801755 ($9594391)
+9903020 -&gt; 8421011 ($5769425)
+9903020 -&gt; 8421011 ($2078355)
+8421011 -&gt; 2801755 ($5577577)
+2801755 -&gt; 9903020 ($2249560)
+</code></pre>
+<p>Expected Output</p>
+<pre><code>26584
+</code></pre>
+<p>Input</p>
+<pre><code>8 40
+2 5658
+9 1408
+2 5828
+9 1501
+2 7924
+9 1207
+5 3092
+3 4560
+4296487 -&gt; 2225009 ($8677503)
+5354529 -&gt; 5768834 ($3634955)
+7488763 -&gt; 5354529 ($704226)
+7488763 -&gt; 5768834 ($7545150)
+5354529 -&gt; 9234689 ($5302603)
+4296487 -&gt; 5768834 ($2896818)
+2225009 -&gt; 4296487 ($2202401)
+5354529 -&gt; 7488763 ($5281635)
+5768834 -&gt; 4296487 ($650471)
+8591387 -&gt; 780712 ($8318161)
+9234689 -&gt; 780712 ($6699814)
+7488763 -&gt; 9234689 ($3025330)
+2225009 -&gt; 9234689 ($6786084)
+780712 -&gt; 7488763 ($3531843)
+4296487 -&gt; 7488763 ($7051813)
+4296487 -&gt; 8591387 ($5375510)
+2225009 -&gt; 9234689 ($2995702)
+5768834 -&gt; 8591387 ($4356904)
+5354529 -&gt; 9234689 ($2752475)
+4296487 -&gt; 7488763 ($5651415)
+9234689 -&gt; 5768834 ($3503021)
+9234689 -&gt; 780712 ($3698275)
+780712 -&gt; 2225009 ($837580)
+4296487 -&gt; 2225009 ($7542725)
+8591387 -&gt; 4296487 ($767345)
+2225009 -&gt; 7488763 ($2435223)
+9234689 -&gt; 7488763 ($5469776)
+5354529 -&gt; 7488763 ($9044531)
+2225009 -&gt; 4296487 ($4645197)
+5768834 -&gt; 8591387 ($5831801)
+5768834 -&gt; 8591387 ($1596987)
+4296487 -&gt; 9234689 ($2000438)
+5768834 -&gt; 8591387 ($5013171)
+2225009 -&gt; 5768834 ($6646064)
+8591387 -&gt; 7488763 ($4473166)
+5768834 -&gt; 2225009 ($5319756)
+9234689 -&gt; 780712 ($9266272)
+780712 -&gt; 5768834 ($5955033)
+4296487 -&gt; 8591387 ($3566529)
+780712 -&gt; 5354529 ($9579464)
+</code></pre>
+<p>Expected Output</p>
+<pre><code>53092
+</code></pre>
+    <div id="submissions"></div>
+    <h3 id="next-part"><a href="/problems/5/a">Go back to to part a</a></h3>
+    <div id="footer"></div>
+</body>
+
+
+</html>
