@@ -14,7 +14,9 @@ for i in range(b):
 
 income = 0
 for i in range(n):
-    income += read_money(input())
+    money = read_money(input())
+    if money > 100:
+        income += money
 
 taxes = 0
 for i in range(1, len(brackets)):

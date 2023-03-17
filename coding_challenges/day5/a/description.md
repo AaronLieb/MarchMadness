@@ -3,12 +3,15 @@
 Tax season is coming up your uncle Charlie Taylor is doing his taxes.
 
 He hates technology and refuses to use any online tools to help him calculate his taxes.
-Hes asked if you could help him calculate how much in taxes he will have to pay this year!
+Hes asked if you could help him calculate how much he paid in taxes this year!
 
 Tax brackets work by dividing your income into ranges, and you are only taxed
 at the specified rate for the income that falls within each range. Any income
 that falls above a certain range is taxed at a higher rate, while income that
 falls below a certain range is taxed at a lower rate or not taxed at all.
+
+Charlie has also requested that you don't count any checks that are $100 or less!
+The IRS will never find out!
 
 ## Input
 
