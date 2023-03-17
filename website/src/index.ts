@@ -82,6 +82,8 @@ app.get('/inputs/:day/:part', async (req, res) => {
       req.cookies.team}`;
   const index = (await fetch(url).then(res => res.json())).index;
   const file = `/../inputs/${req.params.day}/${req.params.part}/${index}.in`;
+  if (req.params.day == '5' && req.params.part == 'b')
+    return res.download(path.join(__dirname + file));
   res.sendFile(path.join(__dirname + file));
 });
 
