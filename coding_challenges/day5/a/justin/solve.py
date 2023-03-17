@@ -21,8 +21,8 @@ for _ in range(num_paychecks):
 in_taxes = 0.0
 
 # subtract from total anything below first tax bracket
-print(total)
-print(brackets)
+# print(total)
+# print(brackets)
 # total -= brackets[0][1]
 # print('aft: ', total)
 current_bracket = 0
@@ -30,14 +30,14 @@ while current_bracket < num_brackets:
     b = brackets[current_bracket]
     l, r, rate = b
     rate /= 100 # 20 -> .2
-
     if total >= l:
-        print('rate: ', rate)
-        taxed_ranged = min(total-l, r - l)
+        # print('rate: ', rate)
+        taxed_ranged = min(total-l, r - l) + 1
         amnt = taxed_ranged * rate
         in_taxes += amnt
-
     current_bracket += 1
 
-print('Amount of money left over to spend on w33d', total-in_taxes)
-print('Paid in taxes', in_taxes)
+# print('Amount of money left over to spend on w33d', total-in_taxes)
+# print('Paid in taxes', in_taxes)
+print(round(in_taxes))
+# print(in_taxes)

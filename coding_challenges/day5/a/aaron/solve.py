@@ -30,4 +30,3 @@ for i in range(0, len(brackets)):
         income -= diff
 
 print(round(taxes))
-
