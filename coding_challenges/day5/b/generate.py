@@ -17,9 +17,9 @@ write the account number who made the most taxable income (primes are not TAXED!
 # (how much taxable income did 12451231 make)
 # (keep numbers below 2^62)
 '''
-DEBUG = False
+DEBUG = True
 if DEBUG:
-    print(f"<<DEBUG MODE ON>>")
+    print(f"<<DEBUG MODE ON>>", flush=True)
 
 N, K, naccis, solved_naccis, chosen, primes, primes_lookup, incomes, calculated_naccis = [None] * 9
 primes = sieve()
@@ -27,8 +27,8 @@ primes_lookup = set(primes)
 
 def getMeta():
     global N, K, naccis, solved_naccis, chosen, primes, primes_lookup, incomes, calculated_naccis
-    N = 30 if DEBUG else randint(2000, 3333)
-    K = 60 if DEBUG else randint(11_000, 20_000)
+    N = 4 if DEBUG else randint(2000, 3333)
+    K = 10 if DEBUG else randint(11_000, 20_000)
     naccis = list(set([getNacciPair() for _ in range(N)])) # set->list cast to remove dupes
     N = len(naccis) # reset N to the number after removing dupes
     assert len(naccis), 'empty naccis!'
