@@ -21,11 +21,11 @@ for i in range(n):
 taxes = 0
 for i in range(0, len(brackets)):
     min_amt, max_amt, rate = brackets[i]
-    diff = max_amt - min_amt
-    if income < diff:
+    diff = max_amt - min(min_amt, 1) + 1
+    if income <= diff:
         taxes += income * rate
         break
-    if income >= diff:
+    if income > diff:
         taxes += diff * rate
         income -= diff
 
