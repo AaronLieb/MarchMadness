@@ -31,12 +31,18 @@ def getMeta():
     K = 40 if DEBUG else randint(11_000, 20_000)
     naccis = list(set([getNacciPair() for _ in range(N)])) # set->list cast to remove dupes
     N = len(naccis) # reset N to the number after removing dupes
-    assert len(naccis), 'empty naccis!'
+    # assert len(naccis), 'empty naccis!'
+    if not len(naccis):
+        getMeta()
     solved_naccis = [kNacci(x[0], x[1]) for x in naccis]
-    assert len(solved_naccis) == len(naccis), 'Uh-oh, solved naccis not same length as generated naccis'
+    # assert len(solved_naccis) == len(naccis), 'Uh-oh, solved naccis not same length as generated naccis'
+    if len(solved_naccis) != len(naccis):
+        getMeta()
     solved_naccis_no_dupes = set(solved_naccis)
     # print(solved_naccis, '\n', solved_naccis_no_dupes)
-    assert len(solved_naccis) == len(solved_naccis_no_dupes), 'Uh-oh, multiple nacci pairs hit same routing number'
+    # assert len(solved_naccis) == len(solved_naccis_no_dupes), 'Uh-oh, multiple nacci pairs hit same routing number'
+    if len(solved_naccis) != len(solved_naccis_no_dupes):
+        getMeta()
     chosen = set()
     incomes = defaultdict(lambda: int()) # not used for generator, this is for solver
     calculated_naccis = {v: ''.join([str(x) for x in k]) for k, v in zip(naccis, solved_naccis)}
