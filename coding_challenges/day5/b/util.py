@@ -29,5 +29,5 @@ def sieve(n: int = MOD+1) -> list[int]:
     return [idx for idx in range(len(nums)) if nums[idx] is True]
 
 if __name__ == '__main__':
-    # print(kNacci(7, 900))
-    print(sieve(6000))
+    print(kNacci(7, 1999))
+    # print(sieve(6000))
