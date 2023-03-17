@@ -9,12 +9,13 @@ def getNacciPair():
 
 def kNacci(k: int, idx: int) -> int:
     prev = [0] + [1] * (k - 1) + [0] * idx
-    if idx < k: return prev[idx]
+    if idx < k: return prev[idx-1]
+    print(prev)
 
     i = k
     while i < idx:
         s = 0
-        for num in prev[i-3:i]:
+        for num in prev[i-k:i]:
             s += (num % MOD)
         prev[i] = s
         i += 1
@@ -29,5 +30,10 @@ def sieve(n: int = MOD+1) -> list[int]:
     return [idx for idx in range(len(nums)) if nums[idx] is True]
 
 if __name__ == '__main__':
-    print(kNacci(7, 1999))
+    # print(kNacci(7, 1999))
+    print(kNacci(2, 1))
+    # print(kNacci(2,99))
+    # for i in range(1, 20):
+    #     print(kNacci(2, i))
+    # print(kNacci(2, 2))
     # print(sieve(6000))
