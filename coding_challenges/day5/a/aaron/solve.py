@@ -16,7 +16,6 @@ income = 0
 for i in range(n):
     income += read_money(input())
 
-print(income)
 taxes = 0
 for i in range(1, len(brackets)):
     min_amt, max_amt, rate = brackets[i]
