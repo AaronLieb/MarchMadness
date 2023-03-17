@@ -31,6 +31,7 @@ for i in range(2, len(nums)):
         primes.append(i)
 
 n, k = [int(x) for x in input().split()]
+primes = set(primes)
 
 accounts = {}
 taxable_income = {}
