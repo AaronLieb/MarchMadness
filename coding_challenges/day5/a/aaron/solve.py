@@ -19,7 +19,7 @@ for i in range(n):
         income += money
 
 taxes = 0
-for i in range(1, len(brackets)):
+for i in range(0, len(brackets)):
     min_amt, max_amt, rate = brackets[i]
     diff = max_amt - min_amt
     if income < diff:
