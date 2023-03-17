@@ -10,7 +10,6 @@ def getNacciPair():
 def kNacci(k: int, idx: int) -> int:
     prev = [0] + [1] * (k - 1) + [0] * idx
     if idx < k: return prev[idx-1]
-    print(prev)
 
     i = k
     while i < idx:

@@ -79,11 +79,12 @@ should be the original bank account.*
 
 `2 <= p <= 9`
 
-`0 <= i <= 1`
+`100 <= i <= 10000`
+
 
 `MOD = 10^7+7`
 
-`2 <= `
+`4 <= transaction amount < MOD`
 
 ## Examples
 

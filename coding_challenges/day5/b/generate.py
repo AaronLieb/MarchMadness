@@ -89,3 +89,4 @@ def generateOne():
 
 if __name__ == '__main__':
     print(generateOne()[0], end = '')
+    print(generateOne()[1], end = '')
