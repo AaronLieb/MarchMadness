@@ -55,7 +55,7 @@ The first line contains two integers `n` and `k`
 Each of the next `n` lines contains a bank account. Each bank account consists
 of two numbers, the first being the base `g` of the `g-Nacci` sequence. The
 next number is the index within that sequence. For example `7 1999` should yield
-a final `routing number` of `2807708`
+a final `routing number` of `8039002`
 
 Each of the next `k` lines contains a transaction. A transaction contains 3
 numbers. The first being the `routing number` from which money is exiting and
@@ -65,11 +65,13 @@ of money transfered.
 
 ## Output
 
-The original bank account which can be found by concatenating the base `g` and
-the index `i` with no spaces. e.g: `7 1999` -> `71999`
+The original bank account whose `routing number` received the most taxable income.
+
+Concatenate the bank account base `p` with its index `i` with no spaces. e.g: `7 1999` -> `71999`
 
 *Note: the transactions show transfers between routing numbers but your output
-should be the original bank account.*
+should be the original bank account associated with the routing number, but not
+the routing number itself*
 
 ## Constraints
 

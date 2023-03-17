@@ -29,7 +29,7 @@ def sieve(n: int = MOD+1) -> list[int]:
     return [idx for idx in range(len(nums)) if nums[idx] is True]
 
 if __name__ == '__main__':
-    print(kNacci(2, 10))
+    print(kNacci(3, 6))
     # print(kNacci(2, 1))
     # print(kNacci(2,99))
     # for i in range(1, 20):
