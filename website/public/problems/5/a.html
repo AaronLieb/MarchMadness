@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+    </script>
+  <!-- Get same header and footer on all pages -->
+  <script>
+    $(function () {
+      $("#header").load("/header.html");
+      $("#footer").load("/footer.html");
+      $("#submissions").load("/submissions.html")
+    });
+  </script>
+
+  <title>Day 4</title>
+</head>
+
+
+<body>
+  <div id="header"></div>
+  <main class="container">
+<hgroup>
+<h1>Day 5 - Tax Brackets - Part A</h1>
+<h3 id="next-part"><a href="/problems/5/b">Go to part b</a></h3>
+</group>
+<p>Tax season is coming up your uncle Charlie Taylor is doing his taxes.</p>
+<p>He hates technology and refuses to use any online tools to help him calculate his taxes.<br />
+Hes asked if you could help him calculate how much he paid in taxes this year!</p>
+<p>Tax brackets work by dividing your income into ranges, and you are only taxed<br />
+at the specified rate for the income that falls within each range. Any income<br />
+that falls above a certain range is taxed at a higher rate, while income that<br />
+falls below a certain range is taxed at a lower rate or not taxed at all.</p>
+<p>Charlie has also requested that you don’t count any checks that are $100 or less!<br />
+The IRS will never find out!</p>
+<h2>Input</h2>
+<h5><a href="/inputs/5/a/" target="_blank">Click here to get your input!</a></h5>
+<p>The first line contains an integer <code>b</code>, the number of tax brackets.<br />
+The second line contains an integer <code>n</code>, the number of paychecks that contribute to Charlie’s taxable income.<br />
+The following <code>b</code> lines each contain two amounts of money <code>bmin</code> and <code>bmax</code> and a percentage <code>rate</code></p>
+<p>Any income in the range of <code>bmin</code> and <code>bmax</code> will be taxed at <code>rate</code></p>
+<p>The following <code>n</code> lines each contain an amount of money <code>m</code><br />
+This means Charlie received a check of amount <code>m</code> that contributes towards his taxable income.</p>
+<h2>Output</h2>
+<p>An integer (no commas or $) representing the amount in dollars that Charlie<br />
+will have to pay in taxes rounded to the nearest whole number</p>
+<h2>Constraints</h2>
+<p><code>b = 50</code><br />
+<code>10000 &lt;= n &lt;= 20000</code></p>
+<h2>Examples</h2>
+<p>Input</p>
+<pre><code>8
+22
+$12,622 $32,448 0%
+$32,449 $59,824 23%
+$59,825 $163,573 37%
+$163,574 $267,261 50%
+$267,262 $594,868 61%
+$594,869 $1,426,679 71%
+$1,426,680 $2,162,839 81%
+$2,162,840 $5,293,352 91%
+$11,122
+$8,738
+$9,960
+$16,697
+$3,474
+$252
+$14,075
+$8,841
+$1,399
+$15,164
+$5,382
+$1,968
+$20,525
+$14,570
+$23,314
+$4,314
+$7,993
+$4,571
+$4,696
+$1,325
+$4,340
+$1,257
+</code></pre>
+<p>Expected Output</p>
+<pre><code>71110
+</code></pre>
+<p>Input</p>
+<pre><code>8
+22
+$10,570 $28,702 0%
+$28,703 $54,727 23%
+$54,728 $141,877 37%
+$141,878 $396,507 50%
+$396,508 $1,162,531 61%
+$1,162,532 $1,952,933 71%
+$1,952,934 $3,307,595 81%
+$3,307,596 $8,421,204 91%
+$14,204
+$14,933
+$2,481
+$9,102
+$135
+$10,675
+$3,282
+$10,860
+$22,868
+$9,655
+$4,918
+$3,311
+$10,251
+$10,558
+$10,862
+$3,903
+$5,288
+$981
+$8,118
+$7,921
+$698
+$4,595
+</code></pre>
+<p>Expected Output</p>
+<pre><code>66444
+</code></pre>
+<div id="submissions"></div>
+<h3 id="next-part"><a href="/problems/5/b">Go to part b</a></h3>
+<div id="footer"></div>
+</body>
+</html>
